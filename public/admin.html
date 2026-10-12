@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Panel · Lavadero CJ</title>
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<main>
+  <section id="login">
+    <h1>Panel de Lavadero CJ</h1>
+    <form id="lf">
+      <label>Contraseña<input type="password" id="pw" autocomplete="current-password" required></label>
+      <button type="submit">Entrar</button>
+    </form>
+    <p class="err" id="le" role="status"></p>
+  </section>
+
+  <section id="panel" hidden>
+    <div class="top">
+      <div><h1>Turnos</h1></div>
+      <button class="sec" id="salir" type="button">Salir</button>
+    </div>
+    <div class="fila">
+      <label>Desde<input type="date" id="desde"></label>
+      <button class="sec" id="ver" type="button">Ver</button>
+    </div>
+    <div class="tw" style="margin-top:14px">
+      <table>
+        <thead><tr><th>Fecha</th><th>Hora</th><th>Servicio</th><th>Cliente</th><th>Teléfono</th><th></th></tr></thead>
+        <tbody id="filas"></tbody>
+      </table>
+    </div>
+    <p class="err" id="pe" role="status"></p>
+    <h2>Mensajes de contacto</h2>
+    <div id="mensajes"></div>
+  </section>
+</main>
+<script src="js/admin.js"></script>
+</body>
+</html>
