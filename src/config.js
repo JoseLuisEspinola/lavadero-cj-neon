@@ -21,7 +21,7 @@ module.exports = {
     'Detalles de pintura',
   ],
   VEHICULOS: [
-    { id: 'auto-app', nombre: 'Auto de aplicación (Uber/DiDi)', importe: 15000 },
+    { id: 'auto-app', nombre: 'Auto Uber, DiDi', importe: 15000 },
     { id: 'sedan', nombre: 'Auto tipo sedán', importe: 20000 },
     { id: 'utilitario-suv', nombre: 'Utilitario / SUV', importe: 25000 },
     { id: 'pickup', nombre: 'Amarok, Ranger, RAM', importe: 30000 },
