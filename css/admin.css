@@ -341,10 +341,15 @@ button.secondary {
     color: #fff; 
     background: #1a2436; 
     border: 1px solid #48cae4;
+    padding: 8px 10px;
 }
 
 button.secondary:hover {
     background: #205040;
+}
+
+input#desde, input#hasta {
+    padding: 8px;
 }
 
 .top {
@@ -411,12 +416,20 @@ tr.realizado {
     font-weight: 700;
 }
 
+.texto-de-precios {
+    margin-bottom: 12px;
+}
+
 #precios-lista {
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
     gap: 12px; 
     width: 100%; 
     margin-bottom: 14px;
+}
+
+#precios-lista label {
+    color: var(--color36)
 }
 
 #precios-estado {

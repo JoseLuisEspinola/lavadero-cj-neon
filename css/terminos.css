@@ -298,11 +298,17 @@ nav.abajo .checkbtn {
     margin: 10px 0 0 auto;
 }
 
-.container-uso p {
+.container-uso p.no-copiar {
     text-align: justify;
     color: var(--color28);
     font-size: clamp(16px, 1vw + 0.75rem, 22px);
     text-shadow: 1px 1px 4px rgb(0, 0, 0);
+
+    /* Para que el texto no pueda ser marcado y copiar */
+    user-select: none;       /* estándar */
+    -webkit-user-select: none; /* Safari/Chrome */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Edge/IE */
 }
 
 /* Boton flecha inicio */

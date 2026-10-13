@@ -97,8 +97,9 @@
                         cancel.type = 'button';
                         cancel.onclick = function () {
                             if (!confirm('¿Cancelar el turno de ' + row.nombre + '?')) return;
-                            api('/api/admin/turnos/' + encodeURIComponent(row.id), { method: 'DELETE' })
-                                .then(cargar).catch(fallo);
+                                api('/api/admin/turnos/' + encodeURIComponent(row.id), { method: 'DELETE' })
+                                    .then(cargar)
+                                    .catch(fallo);
                         };
                         cell.appendChild(cancel);
                     } else if (row.estado === 'realizado') {
