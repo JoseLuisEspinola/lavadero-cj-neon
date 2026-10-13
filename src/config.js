@@ -24,7 +24,7 @@ module.exports = {
     { id: 'auto-app', nombre: 'Auto de aplicación (Uber/DiDi)', importe: 15000 },
     { id: 'sedan', nombre: 'Auto tipo sedán', importe: 20000 },
     { id: 'utilitario-suv', nombre: 'Utilitario / SUV', importe: 25000 },
-    { id: 'pickup', nombre: 'Camioneta (Amarok, Ranger, RAM)', importe: 30000 },
+    { id: 'pickup', nombre: 'Amarok, Ranger, RAM', importe: 30000 },
     { id: 'camion', nombre: 'Camión', importe: 45000 },
   ],
 };
