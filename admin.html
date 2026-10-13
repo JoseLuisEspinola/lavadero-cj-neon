@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>DATOS · Lavadero CJ</title>
+    <link rel="stylesheet" href="/css/admin.css?v=2">
+</head>
+<body>
+    <main>
+        <section id="login">
+            <a class="back" href="/">← Volver al sitio</a>
+            <h1>Acceso a DATOS</h1>
+            <p class="intro">Ingresá la clave de administrador para ver los turnos y mensajes.</p>
+            <form id="login-form">
+                <label for="password">Clave admin</label>
+                <input id="password" type="password" autocomplete="current-password" required>
+                <button type="submit">Ingresar</button>
+            </form>
+            <p class="error" id="login-error" role="status" aria-live="polite"></p>
+        </section>
+
+        <section id="panel" hidden>
+            <div class="top">
+                <div>
+                    <a class="back" href="/">← Volver al sitio</a>
+                    <h1>DATOS</h1>
+                </div>
+                <button class="secondary" id="salir" type="button">Salir</button>
+            </div>
+            <h2>Turnos</h2>
+            <div class="filters">
+                <label for="desde">Desde</label>
+                <input type="date" id="desde">
+                <label for="hasta">Hasta</label>
+                <input type="date" id="hasta">
+                <button class="secondary" id="ver" type="button">Actualizar</button>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Fecha</th><th>Hora</th><th>Servicio</th><th>Vehículo</th><th>Cliente</th><th>Teléfono</th><th>Importe</th><th>Estado / acción</th></tr></thead>
+                    <tbody id="filas"></tbody>
+                </table>
+            </div>
+            <p id="resumen-turnos" role="status" aria-live="polite"></p>
+            <p class="error" id="panel-error" role="status" aria-live="polite"></p>
+            <h2>Precios por tipo de vehículo</h2>
+            <p>Estos importes se aplican a los nuevos turnos de lavado. Los servicios a cotizar y los turnos ya reservados no cambian.</p>
+            <form id="precios-form">
+                <div id="precios-lista"></div>
+                <button type="submit">Guardar precios</button>
+            </form>
+            <p id="precios-estado" role="status" aria-live="polite"></p>
+            <h2>Mensajes de contacto</h2>
+            <div id="mensajes"></div>
+        </section>
+    </main>
+    <dialog id="realizado-dialog" aria-labelledby="realizado-titulo">
+        <form id="realizado-form">
+            <h2 id="realizado-titulo">Registrar turno realizado</h2>
+            <p id="realizado-descripcion"></p>
+            <label id="realizado-importe-label" for="realizado-importe">
+                Importe cobrado en pesos
+                <input id="realizado-importe" type="number" min="0" max="1000000000" step="1">
+            </label>
+            <p class="error" id="realizado-error" role="alert"></p>
+            <div class="dialog-actions">
+                <button class="secondary" id="realizado-volver" type="button">Volver</button>
+                <button id="realizado-confirmar" type="submit">Confirmar realizado</button>
+            </div>
+        </form>
+    </dialog>
+    <script src="/js/admin.js?v=5"></script>
+</body>
+</html>

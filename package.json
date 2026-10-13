@@ -1,8 +1,8 @@
 {
   "name": "lavadero-cj",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "private": true,
-  "description": "Sitio web y sistema de turnos de Lavadero CJ (Vercel + Neon)",
+  "description": "Sitio web, reservas y panel de Lavadero CJ (Vercel + Neon)",
   "scripts": {
     "start": "node iniciar.js",
     "dev": "node --watch iniciar.js"

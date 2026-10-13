@@ -1,0 +1,34 @@
+.uno {
+    background: repeating-linear-gradient(45deg,
+        var(--negro_comun),
+        var(--negro_comun) 20px,
+        var(--rojo_oscuro) 20px,
+        var(--rojo_oscuro) 40px
+    );
+}
+
+.dos {
+    background: repeating-radial-gradient(circle,
+        var(--negro_comun),
+        var(--negro_comun) 30px,
+        var(--rojo_oscuro) 30px,
+        var(--rojo_oscuro) 60px
+    );
+}
+
+.tres {
+    background: linear-gradient(to bottom,
+        rgba(0,0,0,0.8),
+        rgba(229,9,20,0.8)
+        ), url('assets/img/carruselmain/carrusel1.jpg');
+    background-size: cover;
+}
+
+.cuatro {
+    background: conic-gradient(
+        var(--negro_comun) 0deg 90deg,
+        var(--rojo_oscuro) 90deg 180deg,
+        var(--negro_comun) 180deg 270deg,
+        var(--rojo_oscuro) 270deg 360deg
+    );
+}

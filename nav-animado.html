@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  body { background: #111; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+  nav { display: flex; gap: 50px; }
+  nav a {
+    font-family: Arial Black, sans-serif;
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    letter-spacing: 2px;
+    display: flex; /* importante para que los spans se pongan lado a lado */
+    overflow: hidden;
+  }
+  nav a span { display: inline-block; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="link-animado">INICIO</a>
+  <a href="#" class="link-animado">NOSOTROS</a>
+  <a href="#" class="link-animado">CONTACTO</a>
+</nav>
+
+<script>
+  // 1. Creamos el array de letras automáticamente
+  document.querySelectorAll('.link-animado').forEach(link => {
+    link.innerHTML = link.textContent.split('').map(letra => 
+      `<span>${letra}</span>`
+    ).join('');
+  });
+
+  // 2. Animación al hacer hover
+  document.querySelectorAll('.link-animado').forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      anime.timeline({ loop: false })
+        .add({
+          targets: link.querySelectorAll('span'),
+          translateY: -15, // salto hacia arriba
+          duration: 400,
+          easing: 'easeOutElastic(1, .6)',
+          delay: anime.stagger(40) // LA OLA: 40ms entre cada letra
+        })
+        .add({
+          targets: link.querySelectorAll('span'),
+          translateY: 0, // vuelta al origen
+          duration: 600,
+          easing: 'easeOutElastic(1, .6)',
+          delay: anime.stagger(40),
+          // se queda 1 segundo arriba antes de volver
+        }, '+=1000'); // +=1000 = espera 1s
+    });
+  });
+</script>
+
+</body>
+</html>

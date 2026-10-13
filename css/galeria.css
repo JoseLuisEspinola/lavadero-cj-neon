@@ -1,0 +1,757 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    /* Fondos y Bases Oscuras */
+    --color04: #232b1f;
+    --color06: #121614; /* Fondo tirando a verde extremadamente oscuro */
+    --color08: #1a221d;
+    --color10: #090d14; /* Negro profundo del fondo del cartel */
+    --color12: #0f1622; /* Azul noche oscuro (sombras y contornos base) */
+    --color14: #1a2436; /* Azul grisáceo oscuro (matices del fondo urbano) */
+    --color16: #0d1b2a;
+
+    /* Gama de Celestes y Azules Eléctricos (Detalles del agua, burbujas y letras) */
+    --color20: #0096c7; /* Azul Francia/Cian intenso (sombras de las letras y salpicaduras) */
+    --color22: #3a86ff; /* Azul eléctrico vibrante (destellos del agua) */
+    --color24: #48cae4; /* Celeste vivo (cuerpo principal de las letras y burbujas superiores) */
+    --color26: #90e0ef; /* Celeste claro/pastoso (luces en el agua y volumen de letras) */
+    --color28: #caf0f8; /* Celeste blanquecino (brillos intensos y espuma de lavado) */
+
+    /* Gama Verde Agua y Tonos Neón (El toque distintivo de Lavadero JES) */
+    --color30: #00f5d4; /* Verde agua neón / Turquesa brillante (bordes iluminados y grafitis) */
+    --color32: #00bbf9; /* Cian aguamarina equilibrado (transición entre celeste y verde agua) */
+    --color34: #70e000; /* Verde lima/agua ácido (los detalles más encendidos del fondo y goteos) */
+    --color36: #38b000; /* Verde medio (sombras de los grafitis neón) */
+    --color38: #205040; /* Verde agua apagado / Musgo oscuro (sombras internas de la máscara) */
+
+    /* Grises y Metalizados (Estructura de la máscara, llantas y partes del auto) */
+    --color40: #2b2d42; /* Gris grafito oscuro (carrocería del auto y base de la máscara) */
+    --color42: #8d99ae; /* Gris metálico/plata (reflejos en llantas y ópticas) */
+
+    /* Destacados, Textos Secundarios y Luces Absolutas */
+    --color50: #ccff00; /* Amarillo flúor / Lima puro (para el "Siempre con fe" y trazos rebeldes) */
+    --color52: #ffffff; /* Blanco puro (centros de brillos, espuma最高 y textos limpios) */
+    --color54: #000000; /* Negro absoluto (para contornos y detalles más oscuros) */
+    --color56: #e0fa7a; /* Amarillo suave (para resaltados y elementos decorativos) */
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    /* font-family: "Montserrat", Arial, Helvetica, sans-serif; */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* html {
+    scroll-behavior: smooth;
+} */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    background: var(--color16);
+    transition: 0.5s;
+    z-index: 100;
+}
+
+/* Muy importante para el efecto de animación */
+/* nav a span { display: inline-block; } */
+
+nav.abajo {
+    background-color: rgb(13, 27, 42, 0.9);
+    box-shadow: 0 0 20px var(--color72);
+    transition: 0.5s;
+}
+
+#check {
+    display: none;
+}
+
+.checkbtn {
+    font-size: 34px;
+    color: var(--color22);
+    /* esto hace que el icono quede a la derecha */
+    float: right;
+    cursor: pointer;
+    display: none;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo .enlace img {
+    height: 44px;
+    width: 44px;
+    border-radius: 10%;
+    animation: animation-logo 10s ease-in-out infinite;
+}
+
+@keyframes animation-logo {
+    0% {
+        transform: rotateY(0);
+    }
+
+    20% {
+        transform: rotateY(180deg);
+    }
+
+    60%,
+    100% {
+        transform: rotateY(0);
+    }
+}
+
+.logo {
+    gap: 10px;
+}
+
+.logo a img {
+    width: 50px;
+    height: 50px;
+}
+
+.names {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-name {
+    color: var(--color52);
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: 0.5s;
+}
+
+.main-name:hover {
+    color: var(--color34);
+    /* text-shadow: 1px 1px var(--color30); */
+    transition: 0.5s;
+}
+
+.main-name b {
+    color: var(--color34);
+    transition: 0.5s;
+}
+
+.main-namesito {
+    margin-top: 4px;
+    color: var(--color52);
+    font-size: 0.80rem;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+nav ul li {
+    padding: 6px;
+}
+
+nav ul li a {
+    position: relative;
+    display: inline-block;
+    padding: 6px;
+    color: var(--color22);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+nav ul li a:hover {
+    color: var(--color24);
+}
+
+/* nav.abajo ul li a {
+    color: var(--color30);
+} */
+
+nav.abajo ul li a:hover {
+    color: var(--color52);
+}
+
+li a:after {
+    content: "";
+    position: absolute;
+    background-color: var(--color24);
+    height: 4px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+
+li a:hover:after {
+    width: 100%;
+}
+
+li a:focus {
+    color: var(--color20);
+}
+
+.nav-redes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-redes a {
+    display: block;
+    width: clamp(20px, 7vw, 40px);
+    height: clamp(20px, 7vw, 40px);
+    transition: transform 0.3s;
+}
+
+.nav-redes a:hover {
+    transform: scale(0.9);
+}
+
+.nav-redes img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+nav.abajo .checkbtn {
+    color: var(--color22);
+}
+
+
+
+/********************************************/
+/* ****     Zona central: zona1        **** */
+/* **************************************** */
+.zona1 {
+    /* Esto agregue por el tema imagen de fondo */
+    background-image: url(../img/galeria/img01.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+
+
+    /* Esto es lo que estaba */
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 80px);
+    overflow: hidden;
+    margin-top: 86px;
+    /* añade margen para compensar el navbar fijo */
+    display: flex;
+    z-index: 0;
+}
+
+.container-zona1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    max-width: 80%;
+    min-height: 70%;
+    margin: 0 auto;
+}
+
+.imagen-fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.contenido {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 480px;
+}
+
+.h1-zona1 h1 {
+    /* font-size: 4.4rem; */  
+    font-size: clamp(2.5rem, 4vw, 4.4rem);
+    text-align: center;
+    color: var(--color22);
+    text-shadow: 2px 2px 0px var(--color52),
+                 0px 0px 20px var(--color54),
+                 0px 0px 30px var(--color54);
+    font-weight: 600;
+    font-style: normal;
+    margin-bottom: 30px;
+}
+
+.p-zona1 h2 {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #ffffff;
+    font-size: clamp(1rem, 1.5vw, 1.35rem);
+    font-weight: 600;
+    line-height: 1.45;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95),
+                 0 0 10px rgba(0, 0, 0, 0.75);
+}
+
+.p-zona1 span {
+    color: var(--color26);
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95),
+                 0 0 10px rgba(0, 0, 0, 0.75);
+}
+
+.zona1-btn {
+    margin-top: 30px;
+}
+
+.zona1-btn .btn-zona1 {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: clamp(0.8rem, 1.4vw, 1rem);
+    color: var(--color54);
+    background-color:#ccff00;
+    cursor: pointer;
+}
+
+.zona1-btn .btn-zona1:hover {
+    background-color: var(--color56);
+}
+
+.flecha-abajo {
+    margin-top: 50px;
+    font-size: clamp(1.875rem, 3vw + 1.25rem, 3.125rem);
+    border-radius: 50px;
+
+    transform: translateX(50%);
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.flecha-abajo a {
+    color: var(--color26);
+}
+
+.flecha-arriba {
+    bottom: 4px;
+    right: 4px;
+    position: fixed;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+
+/* ******************************** */
+/* ************ Galeria *********** */
+#container-gallery {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-inline: auto;
+    padding-top: 100px;
+    padding-bottom: 30px;
+    max-width: 100%;
+    height: auto;
+    background-color: var(--color08);
+
+    position: relative;
+}
+
+.title-gallery {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: clamp(2.4rem, 3vw, 3rem);
+    color: var(--color50);
+}
+
+.container-img {
+    columns: 3;
+    padding: 16px 32px;
+    column-gap: 32px;
+}
+
+.container-img img {
+    border-radius: 4px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 32px;
+
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 30%;
+    /* cuidando la imagen este 20% en el viewport aparecera, y terminara la iluminacion cuando este el 30% en el viewport */
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        translate: 0 100px;
+        scale: 0.5;
+    }
+
+    to {
+        opacity: 1;
+        translate: 0 0;
+        scale: 1;
+    }
+}
+
+
+
+/*************************/
+/* ******* Footer ****** */
+/*************************/
+.footer-container {
+    width: 100%;
+    height: auto;
+    background-color: var(--color12);
+}
+
+.container-box {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.box-footer {
+  min-width: 140px;
+  margin-inline: 16px;
+}
+
+.title-box {
+    padding: 20px 0px 10px;
+    color: var(--color22);
+    font-weight: 600;
+    /* text-shadow: 1px 1px var(--color30); */
+}
+
+/* Horarios */
+.dias {
+    color: var(--color52);
+}
+
+.horas {
+    color: var(--color50);
+}
+
+/* Otros datos */
+.otros-datos a {
+    color: var(--color50);
+}
+
+.otros-datos a:hover {
+  color: var(--color52);
+}
+
+.telefono,
+.direccion {
+    margin: 8px 0px 8px;
+    color: var(--color50);
+}
+
+/* Sociales */
+.sociales {
+    padding-bottom: 10px;
+}
+
+.sociales a {
+    padding: 0 4px;
+    /* display: inline-block; */
+    display: flex;
+    color: var(--color50);
+    margin: 4px 0 4px;
+}
+
+.instagram,
+.facebook,
+.whatsapp {
+    width: 22px;
+    height: 22px;
+    border-radius: 50px;
+    margin-right: 6px;
+    transition: 0.5s;
+}
+
+.sociales a:hover {
+    color: var(--color52);
+}
+
+.container-terminos {
+    color: var(--color52);
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+.container-terminos .terminos,
+.container-terminos .creditos {
+    color: var(--color26);
+}
+
+.container-terminos .terminos:hover,
+.container-terminos .creditos:hover {
+    color: var(--color28);
+}
+
+/* Linea */
+footer hr {
+    width: 70%;
+    margin: 16px auto 0;
+    border: 1px solid var(--color28);
+}
+
+/* Copyright */
+.copy {
+    text-align: center;
+    padding: 16px 0;
+    color: var(--color42);
+    font-size: clamp(0.65rem, 2vw, 0.85rem);
+}
+
+
+
+/*************************************/
+/* ***** Media Query con 1368px ***** */
+@media (max-width: 1368px) {
+    .h1-zona1 h1 {
+        font-size: 3.8rem;
+    }
+}
+
+
+/*************************************/
+/* ***** Media Query con 1090px ***** */
+@media (max-width: 1090px) {
+    .navbar {
+        justify-content: space-evenly;
+        gap: 12px;
+    }
+
+    .navbar .logo {
+        order: 1;
+        min-width: 0;
+    }
+
+    .navbar .nav-redes {
+        order: 2;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    .logo .enlace img {
+        height: 50px;
+        width: 50px;
+    }
+
+    .main-name {
+        font-size: 1.3rem;
+    }
+
+    .main-namesito {
+        font-size: 0.74rem;
+    }
+
+    .checkbtn {
+        display: block;
+        position: static;
+        order: 3;
+        flex-shrink: 0;
+        z-index: 110; 
+    }
+
+    .navbar ul {
+        position: fixed;
+        width: 100%;
+        height: calc(100vh - 100px);
+        background: rgb(29, 52, 86, 0.8);
+        top: 100px;
+        left: 0;
+        margin: 0;
+        text-align: center;
+        transform: translateY(calc(-100% - 100px));
+        transition: transform 0.5s ease;
+        overflow-y: auto;
+        display: block;
+    }
+
+    .navbar ul li {
+        display: block;
+        margin: 30px 0;
+        line-height: 30px;
+    }
+
+    .navbar ul li a {
+        font-size: 20px;
+    }
+
+    li a:hover,
+    li a.active {
+        background: none;
+    }
+
+    #check:checked ~ ul {
+        transform: translateY(0);
+    }
+}
+
+
+/*************************************/
+/* ***** Media Query con 952px ***** */
+@media (max-width: 952px) {}
+
+
+
+/*************************************/
+/* ***** Media Query con 858px ***** */
+/*************************************/
+@media (max-width: 858px) {
+    .container-img {
+        columns: 2;
+        padding: 16px 16px;
+        column-gap: 22px;
+    }
+}
+
+
+
+/*************************************/
+/* ***** Media Query con 774px ***** */
+/*************************************/
+@media (max-width: 774px) {
+    .h1-zona1 h1 {
+        font-size: 3rem;
+    }
+
+    .presentacion {
+        width: 80%;
+    }
+
+    .card-pres {
+        width: 90%;
+    }
+}
+
+
+
+/*************************************/
+/* ***** Media Query con 542px ***** */
+/*************************************/
+@media (max-width: 542px) {}
+
+
+/*************************************/
+/* ***** Media Query con 516px ***** */
+/*************************************/
+@media (max-width: 516px) {
+    .presentacion {
+        width: 90%;
+    }
+
+    .card-pres {
+        width: 100%;
+    }
+
+    .box-footer {
+        min-width: 120px;
+        margin-inline: 12px;
+    }
+
+    .title-box {
+        font-size: 16px;
+    }
+
+    .box-footer p,
+    .box-footer a {
+        font-size: 14px;
+    }
+}
+
+
+
+/*************************************/
+/* ***** Media Query con 490px ***** */
+/*************************************/
+@media (max-width: 490px) {
+    .fa-bars {
+        scale: 0.9;
+    }
+
+    .main-name {
+        font-size: 1.1rem;
+    }
+
+    .main-namesito {
+        font-size: 0.62rem;
+    }
+
+    .h1-zona1 h1 {
+        font-size: 2.5rem;
+    }
+
+    /* ************************** */
+    footer {
+        padding: 30px 0;
+    }
+
+    p.contac {
+        font-size: 1.6rem;
+    }
+
+    p.mimail {
+        font-size: 0.9rem;
+    }
+
+    footer .copyright {
+        font-size: 0.74rem;
+        font-stretch: normal;
+    }
+}
+
+
+/*************************************/
+/* ***** Media Query con 430px ***** */
+/*************************************/
+@media (max-width: 430px) {
+   .logo .enlace img {
+        height: 40px;
+        width: 40px;
+    }
+}

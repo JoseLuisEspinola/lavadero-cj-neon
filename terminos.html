@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Términos y condiciones del sitio web de Lavadero CJ.">
+
+    <meta name="robots" content="noindex, follow">
+
+    <meta property="og:title" content="Términos y condiciones | Lavadero CJ">
+    <meta property="og:description" content="Términos y condiciones del sitio web de Lavadero CJ.">
+    <meta property="og:image" content="https://lavadero-cj.netlify.app/img/logo-lavaderocj.png">
+    <meta property="og:url" content="https://lavadero-cj.netlify.app/terminos.html">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Términos y condiciones | Lavadero CJ">
+    <meta name="twitter:description"
+      content="Términos y condiciones del sitio web de Lavadero CJ.">
+    <meta name="twitter:image" content="https://lavadero-cj.netlify.app/img/logo-lavaderocj.png">
+
+    <link rel="canonical" href="https://lavadero-cj.netlify.app/terminos.html">
+
+    <link rel="shortcut icon" type="Image/png" href="./img/logo-lavaderocj.png">
+    <link rel="stylesheet" href="./css/terminos.css">
+    <title>Términos y condiciones | Lavadero CJ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+</head>
+
+<body>
+    <!-- Barra de navegacion o NavBar -->
+    <nav class="navbar">
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+        </label>
+
+        <div class="logo">
+            <a href="index.html" class="enlace">
+                <img src="./img/logo-lavaderocj.png" class="logo" alt="Logo Lavadero CJ">
+            </a>
+            <div class="names">
+                <span class="main-name">LAVADERO <b>CJ</b></span>
+                <span class="main-namesito">¡Cuidado que se nota!</span>
+            </div>
+        </div>
+
+        <ul>
+            <li><a href="index.html" class="link-animado">Inicio</a></li>
+            <li><a href="index.html#container-servicios" class="link-animado">Servicios</a></li>
+            <li><a href="index.html#section-precios" class="link-animado">Precios</a></li>
+            <li><a href="index.html#section-nosotros" class="link-animado">Nosotros</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="index.html#section-form">Contacto</a></li>
+            <li><a href="/admin">DATOS</a></li>
+        </ul>
+
+        <!-- Botones de redes centrados -->
+        <div class="nav-redes">
+            <a href="https://api.whatsapp.com/send?phone=+541176315305&text=Hola%2C%20me%20contacto%20desde%20el%20sitio%20web%20Aires%20Nico...%20¿podrías%20contarme%20sobre%20los%20servicios?"
+                target="_blank" title="Enviar Whatsapp">
+                <img src="./img/sociales/whatsapp-azul.png" alt="Logo Whatsapp">
+            </a>
+            <a href="https://www.instagram.com" target="_blank"
+                title="Ir a Instagram">
+                <img src="./img/sociales/instagram-azul.png" alt="Logo Instagram">
+            </a>
+        </div>
+        
+    </nav>
+
+    <!-- JavaScript donde se captura la parte de arriba de la pagina: header-->
+    <script>
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("nav");
+            header.classList.toggle("abajo", window.scrollY > 0);
+        }, { passive: true });
+    </script>
+
+    <!-- JavaScript para animación de enlaces -->
+    <script>
+        // 1. Creamos el array de letras automáticamente
+        document.querySelectorAll('.link-animado').forEach(link => {
+        link.innerHTML = link.textContent.split('').map(letra => 
+            `<span>${letra}</span>`
+        ).join('');
+        });
+
+        // 2. Animación al hacer hover
+        document.querySelectorAll('.link-animado').forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            anime.timeline({ loop: false })
+            .add({
+                targets: link.querySelectorAll('span'),
+                translateY: -10, // salto hacia arriba
+                duration: 400,
+                easing: 'easeOutElastic(1, .6)',
+                delay: anime.stagger(40) // LA OLA: 40ms entre cada letra
+            })
+            .add({
+                targets: link.querySelectorAll('span'),
+                translateY: 0, // vuelta al origen
+                duration: 600,
+                easing: 'easeOutElastic(1, .6)',
+                delay: anime.stagger(40),
+                // se queda 1 segundo arriba antes de volver
+            }, '+=800'); // +=800 = espera 0.8s
+        });
+        });
+    </script>
+
+
+    <!-- Zona central de la primer pagina -->
+    <section class="zona1 container-politicas">
+        <div class="h1-cabecera">
+            <h1>Términos y Condiciones</h1>
+        </div>
+
+        <div class="container-uso">
+            <div class="cabecera introduccion">
+                <h2>1. Introducción</h2>
+            </div>
+            <div class="parrafo p-introduccion">
+                <p>Este documento define las condiciones bajo las cuales se utiliza el sitio web de Lavadero CJ.
+                    Al navegar o solicitar un servicio, el usuario acepta estas reglas de uso.
+                    Si no estás de acuerdo con ellas, te sugerimos no continuar con la contratación ni el acceso a
+                    nuestra plataforma.
+                </p>
+            </div>
+
+            <div class="cabecera uso">
+                <h2>2. Uso del sitio Web</h2>
+                <p>El contenido publicado en este sitio tiene fines informativos y de consulta personal.
+                    No está permitido copiar, distribuir o modificar la información con fines comerciales sin
+                    autorización escrita de Lavadero CJ.
+                    Nos reservamos el derecho de actualizar, ajustar o retirar cualquier sección del sitio sin previo
+                    aviso.
+                </p>
+            </div>
+
+            <div class="cabecera propiedad">
+                <h2>3. Servicios Disponibles</h2>
+                <p>Lavadero CJ ofrece lavado de vehículos, mecánica ligera y trabajos de detalle en pintura.
+                    Los detalles de cada servicio —como tarifas, horarios y disponibilidad— pueden variar y requieren
+                    confirmación previa.
+                    Nos reservamos la facultad de rechazar solicitudes que no se ajusten a nuestras políticas internas.
+                </p>
+            </div>
+
+            <div class="cabecera contacto">
+                <h2>4. Responsabilidad</h2>
+                <p>Lavadero CJ no será responsable por daños directos o indirectos derivados del uso del sitio o de los
+                    servicios contratados,
+                    salvo en los casos previstos por la ley.
+                    El usuario debe proporcionar información veraz y completa al momento de solicitar un servicio.
+                </p>
+            </div>
+
+            <div class="cabecera contacto">
+                <h2>5. Política de Privacidad</h2>
+                <p>La información personal que nos brindes será tratada conforme a nuestra Política de Privacidad.
+                    Nos comprometemos a proteger tus datos y no compartirlos con terceros sin tu consentimiento,
+                    excepto cuando la normativa vigente lo requiera.
+                </p>
+            </div>
+
+            <div class="cabecera contacto">
+                <h2>6. Modificaciones de los Términos</h2>
+                <p>Lavadero CJ puede modificar estos términos y condiciones en cualquier momento.
+                    Las modificaciones entrarán en vigencia una vez publicadas en el sitio web.
+                    Recomendamos revisar esta sección periódicamente para estar al tanto de los cambios.
+                </p>
+            </div>
+
+            <div class="cabecera contacto">
+                <h2>7. Ley Aplicable</h2>
+                <p>Estos términos se rigen por las leyes locales vigentes.
+                    Cualquier conflicto relacionado con el uso del sitio o los servicios será resuelto en los tribunales
+                    competentes.
+                </p>
+            </div>
+
+            <div class="cabecera contacto">
+                <h2>8. Contacto</h2>
+                <p>Si tenés dudas o consultas sobre estos términos y condiciones, podés comunicarte con nosotros a
+                    través del formulario de contacto
+                    o enviando un correo electrónico a ng9104944@gmail.com.
+                </p>
+            </div>
+        </div>
+
+        <a href="#" class="flecha-arriba">
+            <img src="./img/flecha1.png" alt="Flecha Arriba" title="Inicio">
+        </a>
+
+    </section>
+
+
+    <!-- ********* Seccion de footer ******** -->
+    <footer class="footer-container">
+        <div class="container-box">
+
+            <div class="box-footer">
+                <h3 class="title-box">Horarios</h3>
+                <p class="dias">Lunes a viernes:</p>
+                <p class="horas">08:00 hs a 18:00 hs</p>
+                <br>
+                <p class="dias">Sábados:</p>
+                <p class="horas">08:00 hs a 14:00 hs</p>
+            </div>
+
+            <div class="box-footer">
+                <h3 class="title-box">Sociales</h3>
+                <div class="sociales">
+                    <!-- <a href="https://www.linkedin.com/in/jose-luis-espinola-a036b7125/" target="_blank" title="Ir a TikTok">
+                        <img class="tiktok" src="./img/sociales/Linkedin.png" alt="Linkedin"> Linkedin
+                    </a> -->
+                    <a href="https://www.instagram.com/airesacondicionadosnico?stkn=M2E3b3gycTF2ZGty" target="_blank"
+                        title="Ir a Instagram">
+                        <img class="instagram" src="./img/sociales/instagram.png" alt="GitHub"> Instagram
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" title="Ir a Facebook">
+                        <img class="facebook" src="./img/sociales/facebook.png" alt="Facebook"> Facebook
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=+541176039395&text=Hola%2C%20me%20contacto%20desde%20el%20sitio%20web%20Aires%20Nico...%20¿podrías%20contarme%20sobre%20los%20servicios?"
+                        target="_blank" title="Ir a Whatsapp">
+                        <img class="whatsapp" src="./img/sociales/whatsapp.png" alt="Whatsapp">Whatsapp
+                    </a>
+                </div>
+            </div>
+
+            <div class="box-footer">
+                <h3 class="title-box">Otros datos</h3>
+                <div class="otros-datos">
+                    <a href="mailto:ng9104944@gmail.com?subject=Consulta&body=Hola%2C%20quisiera%20más%20información%20sobre%20...">
+                        <i class="fa fa-envelope" aria-hidden="true"></i> Email
+                    </a>
+                    <p class="telefono"><i class="fa fa-phone" aria-hidden="true"></i> +54-11-7603-9395</p>
+                    <p class="direccion"><i class="fa-solid fa-location-dot"></i></i> Uruguay 4000 - Manuel Alberti</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-terminos">
+            <p>
+                <a class="creditos" href="creditos.html">Créditos</a> - 
+                <a class="terminos" href="terminos.html">Térm. y condiciones</a>
+            </p>
+        </div>
+
+        <!-- ******** linea ******** -->
+        <hr>
+
+        <!-- ******** Copyright ******** -->
+        <div class="copy">
+            <!-- <p class="copyright">&copy; <span id="copyright-year"></span> Administración Bourguet - Todos los derechos reservados - Espinola José Luis</p> -->
+            <p class="copyright">&copy; <span id="copyright-year"></span>
+                Lavadero CJ - Todos los derechos reservados
+            </p>
+
+            <script>
+                const currentYear = new Date().getFullYear();
+                document.getElementById('copyright-year').textContent = currentYear;
+            </script>
+        </div>
+    </footer>
+
+    <script src="/js/menu.js"></script>
+    <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous">
+    </script>
+    <script src="/js/scrollreveal.js"></script>
+</body>
+
+</html>

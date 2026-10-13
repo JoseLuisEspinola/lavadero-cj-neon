@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+      content="Fotos de trabajos de Lavadero CJ, con servicios de lavado de vehículos, mecánica ligera y detalles de pintura en Manuel Alberti, Buenos Aires.">
+
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Galería de trabajos | Lavadero CJ">
+    <meta property="og:description"
+      content="Fotos de trabajos de Lavadero CJ, con servicios de lavado de vehículos, mecánica ligera y detalles de pintura en Manuel Alberti, Buenos Aires.">
+    <meta property="og:image" content="https://lavadero-cj.netlify.app/img/logo-lavaderocj.png">
+    <meta property="og:url" content="https://lavadero-cj.netlify.app/galeria.html">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Galería de trabajos | Lavadero CJ">
+    <meta name="twitter:description"
+      content="Fotos de trabajos de Lavadero CJ, con servicios de lavado de vehículos, mecánica ligera y detalles de pintura en Manuel Alberti, Buenos Aires.">
+    <meta name="twitter:image" content="https://lavadero-cj.netlify.app/img/logo-lavaderocj.png">
+
+    <link rel="canonical" href="https://lavadero-cj.netlify.app/galeria.html">
+
+    <link rel="shortcut icon" type="Image/png" href="./img/logo-lavaderocj.png">
+    <link rel="stylesheet" href="./css/galeria.css">
+    <title>Galería de trabajos | Lavadero CJ en Manuel Alberti</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+</head>
+
+<body>
+    <!-- Barra de navegacion o NavBar -->
+    <nav class="navbar">
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+        </label>
+        
+        <div class="logo">
+            <a href="index.html" class="enlace">
+                <img src="./img/logo-lavaderocj.png" class="logo" alt="Logo Lavadero CJ">
+            </a>
+            <div class="names">
+                <span class="main-name">LAVADERO <b>CJ</b></span>
+                <span class="main-namesito">¡Cuidado que se nota!</span>
+            </div>
+        </div>
+
+        <ul>
+            <li><a href="index.html" class="link-animado">Inicio</a></li>
+            <li><a href="index.html#container-servicios" class="link-animado">Servicios</a></li>
+            <li><a href="index.html#section-precios" class="link-animado">Precios</a></li>
+            <li><a href="index.html#section-nosotros" class="link-animado">Nosotros</a></li>
+            <li><a href="#" class="link-animado">Galería</a></li>
+            <li><a href="index.html#section-form" class="link-animado">Contacto</a></li>
+            <li><a href="/admin" class="link-animado">DATOS</a></li>
+        </ul>
+
+        <!-- Botones de redes centrados -->
+        <div class="nav-redes">
+            <a href="https://api.whatsapp.com/send?phone=+541176315305&text=Hola%2C%20me%20contacto%20desde%20el%20sitio%20web%20Aires%20Nico...%20¿podrías%20contarme%20sobre%20los%20servicios?"
+                target="_blank" title="Enviar Whatsapp">
+                <img src="./img/sociales/whatsapp-azul.png" alt="Logo Whatsapp">
+            </a>
+            <a href="https://www.instagram.com" target="_blank"
+                title="Ir a Instagram">
+                <img src="./img/sociales/instagram-azul.png" alt="Logo Instagram">
+            </a>
+        </div>
+    </nav>
+
+    <!-- JavaScript donde se captura la parte de arriba de la pagina: header-->
+    <script>
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("nav");
+            header.classList.toggle("abajo", window.scrollY > 0);
+        }, { passive: true }); // pasive lo agregue, solo si NO uso preventDefault()
+    </script>
+
+    <!-- JavaScript para animación de enlaces -->
+    <script>
+        // 1. Creamos el array de letras automáticamente
+        document.querySelectorAll('.link-animado').forEach(link => {
+            link.innerHTML = link.textContent.split('').map(letra => 
+            `<span>${letra}</span>`
+            ).join('');
+        });
+
+        // 2. Animación al hacer hover
+        document.querySelectorAll('.link-animado').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+            anime.timeline({ loop: false })
+                .add({
+                targets: link.querySelectorAll('span'),
+                translateY: -10, // salto hacia arriba
+                duration: 400,
+                easing: 'easeOutElastic(1, .6)',
+                delay: anime.stagger(40) // LA OLA: 40ms entre cada letra
+                })
+                .add({
+                targets: link.querySelectorAll('span'),
+                translateY: 0, // vuelta al origen
+                duration: 600,
+                easing: 'easeOutElastic(1, .6)',
+                delay: anime.stagger(40),
+                // se queda 1 segundo arriba antes de volver
+                }, '+=800'); // +=800 = espera 0.8s
+            });
+        });
+    </script>
+
+    <!-- Zona central de la primer pagina -->
+    <section class="zona1">
+        <div class="container-zona1">
+            <!-- <img id="imagenFondo" class="imagen-fondo" src="" alt="Fondo carrusel"> -->
+
+            <div class="contenido">
+                <div class="h1-zona1">
+                    <h1 class="title-main">Galería de Trabajos</h1>
+                </div>
+                <div class="p-zona1">
+                    <h2 class="parrafo-galeria">
+                        En <span>Lavadero CJ</span> cada imagen refleja nuestro trabajo con dedicación y compromiso.
+                        La galería muestra trabajos realizados, reparaciones puntuales y mantenimientos efectuados con 
+                        cuidado, transmitiendo confianza y garantía en cada servicio.
+                    </h2>
+                </div>
+
+                <div class="zona1-btn">
+                    <a href="index.html#section-form" class="btn-zona1">¡Pedir presupuesto gratis!</a>
+                </div>
+
+                <div class="flecha-abajo">
+                    <a href="#container-gallery" title="Galeria">
+                        <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Galerias -->
+    <section id="container-gallery">
+        <h2 class="title-gallery">Galería</h2>
+        <div class="container-img">
+            <img src="/img/galeria/img01.jpg" alt="imagen1">
+            <img src="/img/galeria/img02.jpg" alt="imagen2">
+            <img src="/img/galeria/img03.jpg" alt="imagen3">
+            <img src="/img/galeria/img04.jpg" alt="imagen4">
+            <img src="/img/galeria/img05.jpg" alt="imagen5">
+            <img src="/img/galeria/img06.jpg" alt="imagen6">
+        </div>
+        <a href="#" class="flecha-arriba">
+            <img src="./img/flecha1.png" alt="Flecha Arriba" title="Inicio">
+        </a>
+    </section>
+
+
+
+    <!-- ********* Seccion de footer ******** -->
+    <footer class="footer-container">
+        <div class="container-box">
+
+            <div class="box-footer">
+                <h3 class="title-box">Horarios</h3>
+                <p class="dias">Lunes a viernes:</p>
+                <p class="horas">08:00 hs a 18:00 hs</p>
+                <br>
+                <p class="dias">Sábados:</p>
+                <p class="horas">08:00 hs a 14:00 hs</p>
+            </div>
+
+            <div class="box-footer">
+                <h3 class="title-box">Sociales</h3>
+                <div class="sociales">
+                    <!-- <a href="https://www.linkedin.com/in/jose-luis-espinola-a036b7125/" target="_blank" title="Ir a TikTok">
+                        <img class="tiktok" src="./img/sociales/Linkedin.png" alt="Linkedin"> Linkedin
+                    </a> -->
+                    <a href="https://www.instagram.com/airesacondicionadosnico?stkn=M2E3b3gycTF2ZGty" target="_blank"
+                        title="Ir a Instagram">
+                        <img class="instagram" src="./img/sociales/instagram.png" alt="GitHub"> Instagram
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" title="Ir a Facebook">
+                        <img class="facebook" src="./img/sociales/facebook.png" alt="Facebook"> Facebook
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=+541176039395&text=Hola%2C%20me%20contacto%20desde%20el%20sitio%20web%20Aires%20Nico...%20¿podrías%20contarme%20sobre%20los%20servicios?"
+                        target="_blank" title="Ir a Whatsapp">
+                        <img class="whatsapp" src="./img/sociales/whatsapp.png" alt="Whatsapp">Whatsapp
+                    </a>
+                </div>
+            </div>
+
+            <div class="box-footer">
+                <h3 class="title-box">Otros datos</h3>
+                <div class="otros-datos">
+                    <a href="mailto:ng9104944@gmail.com?subject=Consulta&body=Hola%2C%20quisiera%20más%20información%20sobre%20...">
+                        <i class="fa fa-envelope" aria-hidden="true"></i> Email
+                    </a>
+                    <p class="telefono"><i class="fa fa-phone" aria-hidden="true"></i> +54-11-7603-9395</p>
+                    <p class="direccion"><i class="fa-solid fa-location-dot"></i></i> Uruguay 4000 - Manuel Alberti</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-terminos">
+            <p>
+                <a class="creditos" href="creditos.html">Créditos</a> - 
+                <a class="terminos" href="terminos.html">Térm. y condiciones</a>
+            </p>
+        </div>
+
+        <!-- ******** linea ******** -->
+        <hr>
+
+        <!-- ******** Copyright ******** -->
+        <div class="copy">
+            <!-- <p class="copyright">&copy; <span id="copyright-year"></span> Administración Bourguet - Todos los derechos reservados - Espinola José Luis</p> -->
+            <p class="copyright">&copy; <span id="copyright-year"></span>
+                Lavadero CJ - Todos los derechos reservados
+            </p>
+
+            <script>
+                const currentYear = new Date().getFullYear();
+                document.getElementById('copyright-year').textContent = currentYear;
+            </script>
+        </div>
+    </footer>
+
+    <script src="/js/menu.js"></script>
+    <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymcus">
+    </script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="/js/scrollreveal.js"></script>
+</body>
+
+</html>

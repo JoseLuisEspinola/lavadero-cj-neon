@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+      content="Lavadero CJ en Uruguay 4000, Manuel Alberti, Zona Norte de Buenos Aires. Lavado de vehículos, mecánica ligera y detalles de pintura.">
+
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Lavadero de autos en Manuel Alberti, Zona Norte | Lavadero CJ">
+    <meta property="og:description"
+      content="Lavadero CJ en Uruguay 4000, Manuel Alberti, Zona Norte de Buenos Aires. Lavado de vehículos, mecánica ligera y detalles de pintura.">
+    <meta property="og:image" content="https://lavadero-cj.netlify.app/img/logo-lavaderocj.png">
+    <meta property="og:url" content="https://lavadero-cj.netlify.app/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lavadero de autos en Manuel Alberti, Zona Norte | Lavadero CJ">
+    <meta name="twitter:description"
+      content="Lavadero CJ en Uruguay 4000, Manuel Alberti, Zona Norte de Buenos Aires. Lavado de vehículos, mecánica ligera y detalles de pintura.">
+    <meta name="twitter:image" content="https://lavadero-cj.netlify.app/img/logo-lavaderocj.png">
+
+    <link rel="canonical" href="https://lavadero-cj.netlify.app/">
+
+    <link rel="shortcut icon" type="Image/png" href="./img/logo-lavaderocj.png">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/reservas.css">
+    <title>Lavadero de autos en Manuel Alberti, Zona Norte | Lavadero CJ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Schema Markup for LocalBusiness -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Lavadero CJ",
+        "image": "https://lavadero-cj.netlify.app/img/logo-lavaderocj.png",
+        "description": "Lavado de vehículos, mecánica ligera y detalles de pintura en Manuel Alberti, Zona Norte de Buenos Aires.",
+        "url": "https://lavadero-cj.netlify.app/",
+        "telephone": "+541176315305",
+        "email": "ng9104944@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Uruguay 4000",
+          "addressLocality": "Manuel Alberti",
+          "addressRegion": "Buenos Aires",
+          "addressCountry": "AR"
+        },
+        "areaServed": ["Manuel Alberti", "Pilar", "Villa Rosa", "Escobar", "Zona Norte", "CABA"]
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+</head>
+
+<body>
+    <!-- Barra de navegacion o NavBar -->
+    <nav class="navbar">
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+        </label>
+
+        <div class="logo">
+            <a href="#" class="enlace">
+              <img src="/img/logo-lavaderocj.png" class="logo-img" alt="Logo Lavadero CJ">
+            </a>
+            <div class="names">
+              <span class="main-name">LAVADERO <b>CJ</b></span>
+              <span class="main-namesito">¡Cuidado que se nota!</span>
+            </div>
+        </div>
+
+      <ul>
+          <li><a href="#" class="link-animado">Inicio</a></li>
+          <li><a href="#container-servicios" class="link-animado">Servicios</a></li>
+          <li><a href="#section-precios" class="link-animado">Precios</a></li>
+          <li><a href="#section-nosotros" class="link-animado">Nosotros</a></li>
+          <li><a href="galeria.html" class="link-animado">Galería</a></li>
+          <li><a href="#section-turnos" class="link-animado">Turnos</a></li>
+          <li><a href="#section-form" class="link-animado">Contacto</a></li>
+          <li><a href="/admin" class="link-animado">DATOS</a></li>
+      </ul>
+
+      <!-- Botones de redes centrados -->
+      <div class="nav-redes">
+          <a href="https://api.whatsapp.com/send?phone=+541176315305&text=Hola%2C%20me%20contacto%20desde%20el%20sitio%20web%20Aires%20Nico...%20¿podrías%20contarme%20sobre%20los%20servicios?"
+              target="_blank" title="Enviar Whatsapp">
+              <img src="./img/sociales/whatsapp-azul.png" alt="Logo Whatsapp">
+          </a>
+          <a href="https://www.instagram.com" target="_blank"
+              title="Ir a Instagram">
+              <img src="./img/sociales/instagram-azul.png" alt="Logo Instagram">
+          </a>
+      </div>
+
+    </nav>
+
+    <!-- JavaScript donde se captura la parte de arriba de la pagina: header-->
+    <script>
+        window.addEventListener("scroll", function () {
+          var header = document.querySelector("nav");
+          header.classList.toggle("abajo", window.scrollY > 0);
+        }, { passive: true }); // pasive lo agregue, solo si NO uso preventDefault()
+    </script>
+
+
+    <!-- JavaScript para animación de enlaces -->
+    <script>
+        // 1. Creamos el array de letras automáticamente
+        document.querySelectorAll('.link-animado').forEach(link => {
+            link.innerHTML = link.textContent.split('').map(letra => 
+              `<span>${letra}</span>`
+            ).join('');
+        });
+
+        // 2. Animación al hacer hover
+        document.querySelectorAll('.link-animado').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+              anime.timeline({ loop: false })
+                .add({
+                  targets: link.querySelectorAll('span'),
+                  translateY: -10, // salto hacia arriba
+                  duration: 400,
+                  easing: 'easeOutElastic(1, .6)',
+                  delay: anime.stagger(40) // LA OLA: 40ms entre cada letra
+                })
+                .add({
+                  targets: link.querySelectorAll('span'),
+                  translateY: 0, // vuelta al origen
+                  duration: 600,
+                  easing: 'easeOutElastic(1, .6)',
+                  delay: anime.stagger(40),
+                  // se queda 1 segundo arriba antes de volver
+                }, '+=800'); // +=800 = espera 0.8s
+            });
+        });
+    </script>
+
+
+    <!-- Zona central de la primer pagina -->
+    <section class="zona1">
+		    <!--	<img src="./img/pasteleria-super.png" alt="Imagen superpuesta" class="imagen-superpuesta">  -->
+        <button class="carrusel-control carrusel-control--anterior" id="imagenAnterior" type="button" aria-label="Ver imagen anterior">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <button class="carrusel-control carrusel-control--siguiente" id="imagenSiguiente" type="button" aria-label="Ver imagen siguiente">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
+        <div class="container-zona1">
+            <img id="imagenFondo" class="imagen-fondo" src="" alt="Fondo carrusel">
+            <img id="imagenFondoSiguiente" class="imagen-fondo imagen-fondo--fuera-derecha" alt="">
+
+            <div class="contenido">
+                <div class="h1-zona1">
+                    <h1 class="title-main">Lavadero de autos en Manuel Alberti</h1>
+                </div>
+                <div class="p-zona1">
+                    <p class="parrafo-main">
+                        En <span>Lavadero CJ</span>, ubicado en Uruguay 4000, Manuel Alberti, Zona Norte de Buenos Aires, cada vehículo recibe un cuidado que va más allá de la limpieza.
+                        En nuestra sección de <strong>mecánica ligera</strong> asegura que lo esencial funcione con 
+                        precisión y confianza. En el área de <strong>detalles de pintura</strong>, corregimos 
+                        imperfecciones y realzamos acabados para que tu auto luzca impecable. Cada servicio combina 
+                        dedicación, técnica y compromiso, entregando resultados que hablan por sí mismos.
+                    </p>
+                </div>
+
+                <div class="botones-zona1">
+                    <a href="#section-form" class="btn-zona1">Consultanos</a>
+                    <a href="#container-servicios" class="btn-zona1">Nuestros servicios</a>
+                </div>
+            </div>
+        </div>
+
+	</section>
+
+
+
+    <!-- ************Card responsive********************* -->
+    <section id="container-servicios">
+        <h2 class="titulo-servicios">Servicios</h2>
+        <div class="card-servicios">
+
+            <article class="card">
+                <div class="card-img">
+                    <img src="/img/servicios/servicios01.jpg" alt="Servicio de presupuestos de Lavadero CJ">
+                </div>
+                <div class="mini-title">
+                    <h5>- SERVICIO DE PRESUPUESTOS -</h5>
+                </div>
+                <div class="card-title">
+                    <h3>Presupuestos</h3>
+                </div>
+                <div class="card-description">
+                    <p>Puedes pedir <strong>presupuesto gratis</strong>, tanto por mail como por whatsapp, que serán
+                        respondidos a la menor brevedad posible. </p>
+                </div>
+                <div class="card-btn">
+                    <a href="#section-form">Pedir presupuesto</a>
+                </div>
+            </article>
+
+
+            <article class="card">
+                <div class="card-img">
+                    <img src="/img/servicios/servicios02.jpg" alt="Servicio de reparación de aire acondicionado y calderas">
+                </div>
+                <div class="mini-title">
+                    <h5>- LIMPIEZA Y CUIDADO -</h5>
+                </div>
+                <div class="card-title">
+                    <h3>Lavado de vehículos</h3>
+                </div>
+                <div class="card-description">
+                    <p>Una limpieza a fondo para que vuelvas a disfrutar de tu auto, por dentro y por fuera.
+                    </p>
+                </div>
+                <div class="card-btn">
+                    <a href="#section-form">Consultar</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-img">
+                    <img src="/img/servicios/servicios03.jpg" alt="Servicio de preinstalación de aire acondicionado y calderas">
+                </div>
+                <div class="mini-title">
+                    <h5>- REVISION Y MANTENIMIENTO -</h5>
+                </div>
+                <div class="card-title">
+                    <h3>Mecánica ligera</h3>
+                </div>
+                <div class="card-description">
+                    <p>Soluciones para el mantenimiento cotidiano y esos ajustes que ayudan a seguir en movimiento.
+                    </p>
+
+                </div>
+                <div class="card-btn">
+                    <a href="#section-form">Consultar</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-img">
+                    <img src="/img/servicios/servicios04.jpg" alt="Servicio de instalación de aire acondicionado y calderas">
+                </div>
+                <div class="mini-title">
+                    <h5>- ACABADO Y RENOVACIÓN -</h5>
+                </div>
+                <div class="card-title">
+                    <h3>Detalles de pintura</h3>
+                </div>
+                <div class="card-description">
+                    <p>Realzamos la apariencia de la pintura y cuidamos esos detalles que hacen que el auto vuelva a lucirse.
+                    </p>
+                </div>
+                <div class="card-btn">
+                    <a href="#section-form">Consultar</a>
+                </div>
+            </article>
+
+        </div>
+        <a class="btn-contactanos" href="index.html#section-form">¡Contactanos!</a>
+    </section>
+
+
+
+    <!-- Precios -->
+    <section id="section-precios">
+        <h2 class="title-precios">Precios</h2>
+        <p class="vehicle-price-intro">El precio del lavado depende del tipo de vehículo:</p>
+        <ul class="vehicle-price-list">
+            <li class="vehicle-price-item">
+                <i class="fa-solid fa-car-side vehicle-price-icon" aria-hidden="true"></i>
+                <span class="vehicle-price-name">Auto <span class="auto-app">UBER</span>, <span class="auto-app">DIDI</span></span>
+                <strong class="vehicle-price-amount" data-price-vehicle="auto-app">$15.000,00</strong>
+            </li>
+            <li class="vehicle-price-item">
+                <i class="fa-solid fa-car-side vehicle-price-icon" aria-hidden="true"></i>
+                <span class="vehicle-price-name">Auto tipo sedan</span>
+                <strong class="vehicle-price-amount" data-price-vehicle="sedan">$20.000,00</strong>
+            </li>
+            <li class="vehicle-price-item">
+                <i class="fa-solid fa-van-shuttle vehicle-price-icon" aria-hidden="true"></i>
+                <span class="vehicle-price-name">Berlingo, Partner, Kangoo, EcoSport</span>
+                <strong class="vehicle-price-amount" data-price-vehicle="utilitario-suv">$25.000,00</strong>
+            </li>
+            <li class="vehicle-price-item">
+                <i class="fa-solid fa-truck-pickup vehicle-price-icon" aria-hidden="true"></i>
+                <span class="vehicle-price-name">Amarok, Ranger, RAM</span>
+                <strong class="vehicle-price-amount" data-price-vehicle="pickup">$30.000,00</strong>
+            </li>
+            <li class="vehicle-price-item">
+                <i class="fa-solid fa-truck vehicle-price-icon" aria-hidden="true"></i>
+                <span class="vehicle-price-name">Camión</span>
+                <strong class="vehicle-price-amount" data-price-vehicle="camion">$45.000,00</strong>
+            </li>
+        </ul>
+        <a class="btn-precios" href="index.html#section-form">¡Escribenos!</a>
+    </section>
+
+
+
+
+    <!-- SECTION NOSOTROS -->
+    <section id="section-nosotros">
+        <h2 class="title-nosotros">Nosotros</h2>
+
+        <div class="container-nosotros">
+
+            <div class="container-iniciales">
+                <div class="h2-iniciales">
+                    CJ
+                </div>
+            </div>
+
+            <div class="container-textos">
+                <h2 class="h2-container-textos">Un buen cuidado, se nota en cada detalle.</h2>
+                <p class="descripcion">
+                    En <span>Lavadero CJ</span>, nos gusta hacer las cosas con dedicación. Por eso reunimos lavado, mecánica ligera y detalles de pintura en un mismo lugar, con atención cercana y ganas de que te vayas conforme.
+                </p>
+                <a class="btn-nosotros" href="#section-form">Conversemos</a>
+            </div>
+            
+            <div class="container-imagen">
+                <img src="./img/carrusel01.jpg" alt="Nosotros">
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Section RENUEVA -->
+    <section class="section-renueva">
+        <h2 class="title-working">¡Trabajando!</h2>
+        <div class="container-renueva">
+            <img src="./img/galeria/img01.jpg" class="galeria-img1" alt="Trabajando imagen1">
+            <img src="./img/galeria/img02.jpg" class="galeria-img2" alt="Trabajando imagen2">
+            <img src="./img/galeria/img06.jpg" class="galeria-img3" alt="Trabajando imagen3">
+            <img src="./img/galeria/img04.jpg" class="galeria-img4" alt="Trabajando imagen4">
+        </div>
+        <a href="galeria.html" class="btn-renueva">Galería</a>
+    </section>
+
+
+
+    <!-- Preguntas frecuentes -->
+    <section class="questions container" id="questions_id">
+        <h2 class="titulo-preguntas">Preguntas frecuentes</h2>
+        <p class="questions_paragraph">Estas son algunas de las consultas más comunes sobre el cuidado de tu vehículo.</p>
+
+        <section class="questions_container">
+
+            <article class="questions_padding">
+                <div class="questions_answer">
+                    <h3 class="questions_title">¿Qué servicios ofrece Lavadero CJ?
+                      <span class="questions_arrow">
+                        <img src="./img/icons/arrow.svg" class="questions_img">
+                      </span>
+                    </h3>
+                    <p class="questions_show">Ofrecemos lavado de vehículos, mecánica ligera y trabajos de detalle en pintura 
+                        para que puedas cuidar tu auto completo en un mismo lugar.
+                    </p>
+                </div>
+            </article>
+
+            <article class="questions_padding">
+                <div class="questions_answer">
+                    <h3 class="questions_title">¿Cómo puedo conocer el precio de un servicio?
+                        <span class="questions_arrow">
+                            <img src="./img/icons/arrow.svg" class="questions_img">
+                        </span>
+                    </h3>
+                    <p class="questions_show">Podés revisar los valores de los lavados directamente en nuestra sección de
+                        <a href="#section-precios" class="reques-precios">precios</a>.
+                        Para los servicios de mecánica ligera y detalles de pintura, cada presupuesto es personalizado según el tipo 
+                        de vehículo y el trabajo a realizar. <a href="#section-form" class="reques-form">¡Escribinos para pasarte 
+                        un presupuesto!</a>
+                    </p>
+                </div>
+            </article>
+
+            <article class="questions_padding">
+                <div class="questions_answer">
+                    <h3 class="questions_title">¿Qué incluye el lavado de vehículos?
+                        <span class="questions_arrow">
+                            <img src="./img/icons/arrow.svg" class="questions_img">
+                        </span>
+                    </h3>
+                    <p class="questions_show">Realizamos una limpieza cuidadosa del vehículo por dentro y por fuera. 
+                        <a href="#section-form" class="reques-form">Consultanos</a> para conocer las opciones disponibles.
+                    </p>
+                </div>
+            </article>
+
+            <article class="questions_padding">
+                <div class="questions_answer">
+                    <h3 class="questions_title">¿Qué tipo de trabajos de mecánica realizan?
+                        <span class="questions_arrow">
+                            <img src="./img/icons/arrow.svg" class="questions_img">
+                        </span>
+                    </h3>
+                    <p class="questions_show">Nos enfocamos en mecánica ligera y tareas de mantenimiento cotidiano. 
+                        <a href="#section-form" class="reques-form">Contanos</a> qué necesita tu auto para confirmar si podemos 
+                        ayudarte.
+                    </p>
+                </div>
+            </article>
+
+          <article class="questions_padding">
+              <div class="questions_answer">
+                  <h3 class="questions_title">¿Pueden mejorar detalles de pintura de mi auto?
+                      <span class="questions_arrow">
+                          <img src="./img/icons/arrow.svg" class="questions_img">
+                      </span>
+                  </h3>
+                  <p class="questions_show">Evaluamos cada vehículo para orientarte sobre el tratamiento y el resultado posible según el
+                    estado de la pintura. <a href="#section-form" class="reques-form">Contactanos</a> y lo vemos.
+                  </p>
+              </div>
+          </article>
+
+          <article class="questions_padding">
+              <div class="questions_answer">
+                  <h3 class="questions_title">¿Cuánto tiempo demora el servicio?
+                      <span class="questions_arrow">
+                          <img src="./img/icons/arrow.svg" class="questions_img">
+                      </span>
+                  </h3>
+                  <p class="questions_show">El tiempo puede variar según el servicio y el estado del vehículo. 
+                    <a href="#section-form" class="reques-form">Consultanos</a> antes de venir para coordinar y conocer una estimación.</p>
+              </div>
+          </article>
+
+            <article class="questions_padding">
+                <div class="questions_answer">
+                    <h3 class="questions_title">¿Necesito consultar antes de acercarme?
+                        <span class="questions_arrow">
+                            <img src="./img/icons/arrow.svg" class="questions_img">
+                        </span>
+                    </h3>
+                    <p class="questions_show">Te recomendamos 
+                        <a href="#section-form" class="reques-form">escribinos</a> para verificar la disponibilidad y 
+                        coordinar la atención para tu vehículo.
+                    </p>
+                </div>
+            </article>
+
+            <article class="questions_padding">
+                <div class="questions_answer">
+                    <h3 class="questions_title">¿Cómo solicito un presupuesto?
+                        <span class="questions_arrow">
+                            <img src="./img/icons/arrow.svg" class="questions_img">
+                        </span>
+                    </h3>
+                    <p class="questions_show"><a href="#section-form" class="reques-form">Contactanos</a>
+                        y contanos qué servicio necesitás y qué vehículo tenés. Si se trata de un detalle de pintura, 
+                        podés enviarnos fotos para que podamos orientarte mejor.
+                    </p>
+                </div>
+            </article>
+        </section>
+
+        <section class="questions_offer">
+            <h2 class="subtitle2">¡Lavadero CJ: cuidado que se nota!</h2>
+            <p class="questions_copy">Cuidamos tu vehículo con servicios de lavado, mecánica ligera y detalles de pintura, 
+                prestando atención a cada trabajo.
+            </p>
+            <p class="questions_copy copy2">Escribinos para consultar opciones, coordinar tu visita y encontrar el servicio 
+                que mejor se adapte a tu auto.
+            </p>
+            <div class="btn-flecha">
+                <p class="f-izq" alt="flecha-izq">>></p>
+                <a href="#section-form" class="btn-aprende">¡Escribenos!</a>
+                <p class="f-der" alt="flecha-der">
+                << </p>
+            </div>
+        </section>
+
+    </section>
+
+
+
+
+    <!-- *********** MARQUESINA *********** -->
+    <section class="marquesina">
+        <div class="marquesina-content">
+            <span>📝 Cotizaciones</span>
+            <span>💧 Lavado de vehículos</span>
+            <span>🔧 Mecánica ligera</span>
+            <span>🎨 Detalles de Pintura</span>
+        </div>
+    </section>
+
+
+
+
+    <section id="section-turnos" aria-labelledby="turnos-title">
+        <h2 id="turnos-title" class="turnos-title">Reservá tu turno</h2>
+        <p class="turnos-intro">Elegí un servicio, el tipo de vehículo, un día y un horario disponible. Te esperamos.</p>
+        <form id="form-turnos" class="turnos-form" novalidate>
+            <label for="turno-servicio">Servicio</label>
+            <select id="turno-servicio" name="servicio" required>
+                <option value="" disabled selected>Cargando servicios...</option>
+            </select>
+
+            <label for="turno-vehiculo">Tipo de vehículo</label>
+            <select id="turno-vehiculo" name="vehiculo" required>
+                <option value="" disabled selected>Cargando vehículos...</option>
+            </select>
+            <p class="turnos-status" id="turno-precio" aria-live="polite"></p>
+
+            <label for="turno-fecha">Día</label>
+            <input id="turno-fecha" name="fecha" type="date" required>
+
+            <div>
+                <span class="turnos-label">Horario</span>
+                <div class="turno-slots" id="turno-horarios" aria-live="polite"></div>
+            </div>
+
+            <label for="turno-nombre">Nombre</label>
+            <input id="turno-nombre" name="nombre" type="text" autocomplete="name" maxlength="60" required>
+
+            <label for="turno-telefono">Teléfono</label>
+            <input id="turno-telefono" name="telefono" type="tel" autocomplete="tel" maxlength="20" required>
+
+            <button class="turnos-submit" type="submit">Reservar turno</button>
+            <p class="turnos-status" id="turno-mensaje" role="status"></p>
+        </form>
+    </section>
+
+    <!-- ********** FORMULARIO ********** -->
+    <section id="section-form">
+        <h2 class="titulo-form">Contacto y ubicación</h2>
+
+        <div class="container-maps_form">
+            <div class="maps">
+                <address>
+                    <p><span>Lavadero CJ</span> - Uruguay 4000, Manuel Alberti, Zona Norte de Buenos Aires</p>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Uruguay+4000%2C+Manuel+Alberti%2C+Buenos+Aires%2C+Argentina"
+                        target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+                </address>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4126.984503829569!2d-58.77901752426777!3d-34.41907607302115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzTCsDI1JzA4LjciUyA1OMKwNDYnMzUuMiJX!5e1!3m2!1ses!2sar!4v1791027757686!5m2!1ses!2sar" 
+                    width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy" 
+                    referrerpolicy="strict-origin-when-cross-origin">
+                </iframe>
+            </div>
+
+            <form id="form-contacto" class="form" action="/api/mensajes" method="POST">
+                <p class="anotate">¡Envianos tu consulta gratis!</p>
+
+                <!-- Agrego  -->
+                <div class="entradas-juntas">
+                    <select id="servicio" name="servicio">
+                      <option value="" class="seleccion" disabled selected>Seleccione un servicio <span>*</span></option>
+                      <option value="reparacion">Lavado</option>
+                      <option value="preinstalacion">Mecánica ligera</option>
+                      <option value="instalacion">Detalles de pintura</option>
+                    </select>
+                    <input id="fecha" type="date" name="fecha" min="" placeholder="Fecha *" />
+
+                    <input id="hora" type="time" name="hora" placeholder="Hora *" />
+                </div>
+
+                <input id="nombre" class="nombre" type="text" name="nombre" required aria-required="true"
+                  placeholder="Nombre completo *" />
+
+                <input id="direccion" type="text" name="direccion" placeholder="Dirección" />
+                <!-- Fin Agrego -->
+
+                <input id="telefono" type="tel" name="telefono" required placeholder="Telefono *">
+
+                <!-- <input id="email" class="email" type="email" name="email" required placeholder="Correo *"> -->
+                <input id="email" class="email" type="email" name="_replyto" placeholder="Correo electrónico">
+
+                <textarea id="mensaje" name="mensaje" required placeholder="Escriba aquí su mensaje *"></textarea>
+
+                <div class="aceptar">
+                    <label for="check-priv" class="text-priv">
+                        <input type="checkbox" id="check-priv" required>
+                            Acepto que se envíen mis datos
+                    </label>
+                </div>
+                <div class="botones">
+                    <input type="submit" class="btn btn-grabar" title="Enviar el formulario" value="Enviar">
+                    <input type="reset" class="btn btn-limpiar" title="Limpia los campos" value="Limpiar">
+                </div>
+                <p id="contacto-estado" class="contacto-estado" role="status" aria-live="polite" hidden></p>
+            </form>
+
+        </div>
+    </section>
+
+
+
+    <!-- ********* Seccion de footer ******** -->
+    <footer class="footer-container">
+        <div class="container-box">
+
+            <div class="box-footer">
+                <h3 class="title-box">Horarios</h3>
+                <p class="dias">Lunes a viernes:</p>
+                <p class="horas">08:00 hs a 18:00 hs</p>
+                <br>
+                <p class="dias">Sábados:</p>
+                <p class="horas">08:00 hs a 14:00 hs</p>
+            </div>
+
+            <div class="box-footer">
+                <h3 class="title-box">Sociales</h3>
+                <div class="sociales">
+                    <!-- <a href="https://www.linkedin.com/in/jose-luis-espinola-a036b7125/" target="_blank" title="Ir a TikTok">
+                                  <img class="tiktok" src="./img/sociales/Linkedin.png" alt="Linkedin"> Linkedin
+                              </a> -->
+                    <a href="https://www.instagram.com/airesacondicionadosnico?stkn=M2E3b3gycTF2ZGty" target="_blank"
+                        title="Ir a Instagram">
+                        <img class="instagram" src="./img/sociales/instagram.png" alt="GitHub"> Instagram
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" title="Ir a Facebook">
+                        <img class="facebook" src="./img/sociales/facebook.png" alt="Facebook"> Facebook
+                    </a>
+                      <a href="https://api.whatsapp.com/send?phone=+541176039395&text=Hola%2C%20me%20contacto%20desde%20el%20sitio%20web%20Aires%20Nico...%20¿podrías%20contarme%20sobre%20los%20servicios?"
+                        target="_blank" title="Ir a Whatsapp">
+                        <img class="whatsapp" src="./img/sociales/whatsapp.png" alt="Whatsapp">Whatsapp
+                    </a>
+                </div>
+            </div>
+
+            <div class="box-footer">
+                <h3 class="title-box">Otros datos</h3>
+                <div class="otros-datos">
+                    <a href="mailto:ng9104944@gmail.com?subject=Consulta&body=Hola%2C%20quisiera%20más%20información%20sobre%20...">
+                        <i class="fa fa-envelope" aria-hidden="true"></i> Email
+                    </a>
+                    <p class="telefono"><i class="fa fa-phone" aria-hidden="true"></i> +54-11-7603-9395</p>
+                    <p class="direccion"><i class="fa-solid fa-location-dot"></i></i> Uruguay 4000 - Manuel Alberti</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-terminos">
+            <p>
+                <a class="creditos" href="creditos.html">Créditos</a> - 
+                <a class="terminos" href="terminos.html">Térm. y condiciones</a>
+            </p>
+        </div>
+
+        <!-- ******** linea ******** -->
+        <hr>
+
+        <!-- ******** Copyright ******** -->
+        <div class="copy">
+            <!-- <p class="copyright">&copy; <span id="copyright-year"></span> Administración Bourguet - Todos los derechos reservados - Espinola José Luis</p> -->
+            <p class="copyright">&copy; <span id="copyright-year"></span>
+                Lavadero CJ - Todos los derechos reservados
+            </p>
+
+            <script>
+                const currentYear = new Date().getFullYear();
+                document.getElementById('copyright-year').textContent = currentYear;
+            </script>
+        </div>
+    </footer>
+
+    <script src="./js/menu.js"></script>
+    <script src="./js/carrusel-main.js"></script>
+    <script src="./js/preguntas.js"></script>
+    <script src="./js/busqueda.js"></script>
+    <script src="./js/valid-contacto.js"></script>
+    <script src="./js/turnos.js?v=2"></script>
+    <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymcus">
+    </script>
+    <!-- Incluir la biblioteca de ScrollReveal -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="./js/scrollreveal.js"></script>
+
+</body>
+</html>

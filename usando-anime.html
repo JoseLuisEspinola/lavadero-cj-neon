@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  body {
+    background: #0a0a0a;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    perspective: 1000px;
+    overflow: hidden;
+  }
+  .escena {
+    transform-style: preserve-3d;
+  }
+  .texto-3d {
+    font-family: Arial Black, sans-serif;
+    font-size: 80px;
+    font-weight: 900;
+    color: #fff;
+    transform-style: preserve-3d;
+    letter-spacing: 4px;
+    line-height: 0.9;
+    text-align: center;
+    
+    /* Efecto 3D con sombras */
+    text-shadow: 
+      1px 1px 0 #444,
+      2px 2px 0 #444,
+      3px 3px 0 #444,
+      4px 4px 0 #444,
+      5px 5px 0 #444,
+      10px 10px 20px rgba(0,0,0,0.8);
+  }
+  .nico {
+    color: #00f0ff;
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+</head>
+<body>
+
+  <div class="escena">
+    <div class="texto-3d">
+      <div>AIRE</div>
+      <div class="nico">NICO</div>
+    </div>
+  </div>
+
+<script>
+anime({
+  targets: '.texto-3d',
+  rotateY: '360deg', // rotación horizontal
+  duration: 6000,    // 6 segundos = lento. Poné 8000 si lo querés más lento
+  easing: 'linear',  // velocidad constante
+  loop: true
+});
+
+// Un poquito de flotado también queda lindo
+anime({
+  targets: '.escena',
+  translateY: [-10, 10],
+  duration: 2000,
+  easing: 'easeInOutSine',
+  loop: true,
+  direction: 'alternate'
+});
+</script>
+
+</body>
+</html>
