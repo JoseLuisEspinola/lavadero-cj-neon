@@ -237,8 +237,6 @@ nav.abajo .checkbtn {
 /**********************************************/
 /* **** Zona central de la primer pagina **** */
 /**********************************************/
-/**********************************************/
-/* **** Zona central de la primer pagina **** */ 
 .zona1 {
     position: relative;
     width: 100%;
@@ -387,12 +385,13 @@ nav.abajo .checkbtn {
 }
 
 .btn-zona1 {
-    padding: 10px 20px;
+    padding: 8px 26px;
     border: none;
-    border-radius: 6px;
-    font-size: clamp(0.8rem, 1.4vw, 1rem);
+    border-radius: 10px;
+    font-size: clamp(0.9rem, 1.2vw, 1.16rem);
     color: var(--color54);
-    background-color:#ccff00;
+    background-color: var(--color50);
+    font-weight: 600;
     cursor: pointer;
 }
 
@@ -425,32 +424,29 @@ nav.abajo .checkbtn {
 }
 
 .card-servicios {
-  width: min(1280px, calc(100% - 40px));
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  gap: 20px;
-  align-items: stretch;
+    width: min(1280px, calc(100% - 40px));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 20px;
+    align-items: stretch;
 }
 
 .card {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  border-radius: 8px;
-  border: 1px solid var(--color42);
-  background-color: var(--color08);
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    border: 1px solid var(--color42);
+    background-color: var(--color08);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
-  /* box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7),
-              0 0 18px rgba(255, 255, 255, 0.35),
-              0 10px 24px rgba(250, 250, 250, 0.28); */
     border: 1px solid var(--color36);
-  transform: translateY(-4px);
+    transform: translateY(-4px);
 }
 
 .card-img {
@@ -480,26 +476,26 @@ nav.abajo .checkbtn {
 }
 
 .card-title h3 {
-  font-size: 1.30rem;
-  margin: 0;
-  color: var(--color52);
+    font-size: 1.30rem;
+    margin: 0;
+    color: var(--color52);
 }
 
 .card-description {
-  flex: 1;
-  margin: 0;
-  padding: 0 20px 12px;
+    flex: 1;
+    margin: 0;
+    padding: 0 20px 12px;
 }
 
 .card-description p {
-  color: var(--color42);
-  font-size: 0.95rem;
-  line-height: 1.10;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  overflow: hidden;
+    color: var(--color42);
+    font-size: 0.95rem;
+    line-height: 1.10;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
 }
 
 .card-btn {
@@ -532,18 +528,19 @@ nav.abajo .checkbtn {
 }
 
 
-.btn-contactanos {
+.btn-servicios {
     margin: 30px auto 20px;
-    padding: 8px 30px;
+    padding: 8px 26px;
     border: 1px solid var(--color50);
-    font-size: clamp(0.9rem, 1.2vw, 1.25rem);
     background-color: var(--color50);
     color: var(--color54);
+    font-size: clamp(0.9rem, 1.2vw, 1.16rem);
+    font-weight: 600;
     border-radius: 10px;
     transition: 0.5s;
 }
 
-.btn-contactanos:hover {
+.btn-servicios:hover {
     background-color: var(--color56);
     border-color: var(--color56);
 }
@@ -563,7 +560,7 @@ nav.abajo .checkbtn {
     padding-bottom: 30px;
     max-width: 100%;
     height: auto;
-    background: linear-gradient(135deg, var(--color16), var(--color12));
+    background: linear-gradient(135deg, var(--color10), var(--color12), var(--color16));
     position: relative;
 }
 
@@ -647,22 +644,99 @@ nav.abajo .checkbtn {
     }
 }
 
+.flecha-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .btn-precios {
     margin: 30px auto 20px;
-    padding: 8px 30px;
+    padding: 8px 26px;
     border: 1px solid var(--color50);
-    color: var(--color54);
     background-color: var(--color50);
-    font-size: clamp(0.9rem, 1.2vw, 1.25rem);
+    color: var(--color54);
+    font-size: clamp(0.9rem, 1.2vw, 1.16rem);
+    font-weight: 600;
     border-radius: 10px;
     transition: 0.5s;
+
+    animation: movi-precios 1s infinite;
 }
+
 
 .btn-precios:hover {
     background-color: var(--color56);
 }
 
 
+/* keyframes boton amimacion - poner valores a gusto del CONSUMIDOR jaja*/
+@keyframes movi-precios {
+    0%, 100% {
+        transform: rotate(0deg);
+        transform-origin: 50% 100%;
+    }
+
+    10% {
+        transform: rotate(2deg);
+
+    }
+
+    20%, 40%, 60% {
+        transform: rotate(-4deg);
+    }
+
+    30%, 50%, 70% {
+        transform: rotate(4deg);
+    }
+
+    80% {
+        transform: rotate(-2deg);
+    }
+
+    90% {
+        transform: rotate(2deg);
+    }
+}
+
+p.flecha-izq,
+p.flecha-der {
+    font-size: clamp(1rem, 3vw, 1.45rem);
+    font-weight: 600;
+    padding: 0 20px;
+    color: var(--color50);
+    background-color: transparent;
+}
+
+p.flecha-izq {
+    animation: mueve-left 2s infinite;
+}
+
+@keyframes mueve-left {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-10px);
+    }
+}
+
+p.flecha-der {
+    animation: mueve-right 2s infinite;
+}
+
+@keyframes mueve-right {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(10px);
+    }
+}
 
 
 
@@ -735,10 +809,13 @@ nav.abajo .checkbtn {
 
 a.btn-nosotros {
     align-self: flex-start;
-    padding: 8px 12px;
+    padding: 8px 26px;
     background-color: var(--color50);
     color: var(--color54);
-    border-radius: 8px;
+    font-size: clamp(0.9rem, 1.2vw, 1.16rem);
+    font-weight: 600;
+    border-radius: 10px;
+    transition: 0.5s;
 }
 
 a.btn-nosotros:hover {
@@ -824,14 +901,15 @@ a.btn-nosotros:hover {
 
 .btn-renueva {
     padding: 8px 30px;
-    border: none;
     display: inline-block;
-    font-size: clamp(0.9rem, 1.2vw, 1.25rem);
+    font-size: clamp(0.9rem, 1.2vw, 1.16rem);
     background-color: var(--color50);
     color: var(--color54);
+    font-weight: 600;
     border-radius: 40px 10px;
-    animation: border-animado 4s infinite;
     transition: 0.5s;
+
+    animation: border-animado 4s infinite;
 }
 
 .btn-renueva:hover {
@@ -1030,12 +1108,12 @@ a.btn-nosotros:hover {
 .btn-aprende {
     /*  margin-top: 30px; */
     justify-content: center;
-    padding: 10px 25px;
-    border-radius: 15px;
+    padding: 8px 26px;
+    border-radius: 10px;
     border: 1px solid var(--color50);
     background-color: var(--color50);
     color: var(--color54);
-    font-size: 16px;
+    font-size: clamp(0.9rem, 1.2vw, 1.16rem);
     font-weight: 500;
     cursor: pointer;
     align-self: flex-end;
@@ -1043,36 +1121,32 @@ a.btn-nosotros:hover {
     animation: movi-boton 1s infinite;
 }
 
+
 /* keyframes boton amimacion - poner valores a gusto del CONSUMIDOR jaja*/
 @keyframes movi-boton {
-    0%,
-    100% {
-        transform: rotate(0deg);
+    0%, 100% {
+        transform: translateY(0deg);
         transform-origin: 50% 100%;
     }
 
     10% {
-        transform: rotate(2deg);
+        transform: translateY(2px);
     }
 
-    20%,
-    40%,
-    60% {
-        transform: rotate(-4deg);
+    20%, 40%, 60% {
+        transform: translateY(-4px);
     }
 
-    30%,
-    50%,
-    70% {
-        transform: rotate(4deg);
+    30%, 50%, 70% {
+        transform: translateY(4px);
     }
 
     80% {
-        transform: rotate(-2deg);
+        transform: translateY(-2px);
     }
 
     90% {
-        transform: rotate(2deg);
+        transform: translateY(2px);
     }
 }
 
@@ -1095,9 +1169,8 @@ p.f-izq {
 }
 
 @keyframes move-left {
-    0%,
-    100% {
-        transform: translateX(0);
+    0%, 100% {
+        transform: translatey(0px);
     }
 
     50% {
@@ -1110,8 +1183,7 @@ p.f-der {
 }
 
 @keyframes move-right {
-    0%,
-    100% {
+    0%, 100% {
         transform: translateX(0);
     }
 
@@ -1157,6 +1229,134 @@ p.f-der {
         transform: translateX(-100%);
     }
 }
+
+
+
+
+/* ********************************** */
+/* ******** Seccion de Turnos ******* */
+/* ********************************** */
+#section-turnos {
+    padding: 100px 20px 70px;
+    color: var(--color52);
+    background: linear-gradient(135deg, var(--color16), var(--color08));
+}
+
+.turnos-title,
+.turnos-intro {
+    width: min(90%, 760px);
+    margin: 0 auto 14px;
+    text-align: center;
+}
+
+.turnos-title {
+    color: var(--color50);
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.turnos-intro { 
+    color: var(--color42); 
+}
+
+.turnos-form {
+    display: grid;
+    gap: 10px;
+    width: min(90%, 760px);
+    max-width: none;
+    margin: 26px auto 0;
+    padding: 24px;
+    border: 1px solid var(--color38);
+    border-radius: 12px;
+    background: #0f1622;
+}
+
+.turnos-form label,
+.turnos-label {
+    color: var(--color24);
+    font-weight: 600;
+}
+
+.turnos-form input,
+.turnos-form select {
+    width: 100%;
+    margin: 0 0 8px;
+    padding: 11px 12px;
+    color: var(--color52);
+    background-color: var(--color10);
+    border: 1px solid var(--color42);
+    border-radius: 6px;
+}
+
+.turnos-form select option { 
+    color: var(--color52); 
+    background: var(--color10); 
+}
+
+.turno-slots { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px; 
+    margin: 8px 0; 
+}
+
+.turno-slot {
+    min-width: 82px;
+    padding: 9px 13px;
+    color: var(--color52);
+    background: var(--color12);
+    border: 1px solid var(--color42);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.turno-slot[aria-pressed="true"] {
+    color: var(--color54);
+    background: var(--color50);
+    border-color: var(--color50);
+}
+
+.turno-slot:disabled { 
+    opacity: .42; 
+    text-decoration: line-through; 
+    cursor: not-allowed; 
+}
+
+.turnos-submit {
+    justify-self: start;
+    padding: 8px 26px;
+    color: var(--color54);
+    background: var(--color50);
+    border: 1px solid var(--color50);
+    border-radius: 10px;
+    font-size: clamp(0.9rem, 1.2vw, 1.12rem);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.turnos-submit:disabled { 
+    opacity: .6; 
+    cursor: wait; 
+}
+
+.turnos-status { 
+    min-height: 1.5em; 
+    margin: 0; 
+    color: var(--color24); 
+}
+
+.contacto-estado { 
+    min-height: 1.3em; 
+    margin: 4px 0 0; 
+    color: var(--color24); 
+}
+
+@media (max-width: 700px) {
+    .turnos-form { 
+        width: min(100%, 540px); 
+        padding: 18px; 
+    }
+}
+
 
 
 /* *********************************** */
