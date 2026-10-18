@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>Acceso kioscos - Lavadero CJ</title>
+    <link rel="stylesheet" href="/css/kiosco.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/nav-dropdown.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Barra de navegacion o NavBar -->
+    <nav class="navbar">
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+        </label>
+
+        <div class="logo">
+            <a href="#" class="enlace">
+              <img src="/img/logo-lavaderocj.png" class="logo-img" alt="Logo Lavadero CJ">
+            </a>
+            <div class="names">
+              <span class="main-name">LAVADERO <b>CJ</b></span>
+              <span class="main-namesito">¡Cuidado que se nota!</span>
+            </div>
+        </div>
+
+      <ul>
+          <li><a href="index.html" class="link-animado">Inicio</a></li>
+          <li><a href="index.html#container-servicios" class="link-animado">Servicios</a></li>
+          <li><a href="index.html#section-precios" class="link-animado">Precios</a></li>
+          <li><a href="index.html#section-nosotros" class="link-animado">Nosotros</a></li>
+          <li><a href="galeria.html" class="link-animado">Galería</a></li>
+          <li><a href="index.html#section-turnos" class="link-animado">Turnos</a></li>
+          <li><a href="index.html#section-form" class="link-animado">Contacto</a></li>
+          <li class="nav-dropdown">
+              <button class="nav-dropdown-toggle link-animado" type="button" aria-expanded="false" aria-controls="datos-menu">DATOS</button>
+              <ul class="nav-submenu" id="datos-menu">
+                  <li><a href="/admin.html" class="link-animado">Admin</a></li>
+                  <li><a href="/kiosco.html" class="link-animado">Kioscos</a></li>
+              </ul>
+          </li>
+      </ul>
+
+      <!-- Botones de redes centrados -->
+      <div class="nav-redes">
+          <a href="https://api.whatsapp.com/send?phone=+541176315305&text=Hola%2C%20me%20contacto%20desde%20el%20sitio%20web%20lavadero%20CJ...%20¿podrías%20contarme%20sobre%20los%20servicios?"
+              target="_blank" title="Enviar Whatsapp">
+              <img src="./img/sociales/whatsapp-azul.png" alt="Logo Whatsapp">
+          </a>
+          <a href="https://www.instagram.com" target="_blank"
+              title="Ir a Instagram">
+              <img src="./img/sociales/instagram-azul.png" alt="Logo Instagram">
+          </a>
+      </div>
+
+    </nav>
+
+
+
+    <main>
+        <!-- login -->
+        <section id="login">
+            <a class="back" href="/">← Volver al sitio</a>
+            <h1>Acceso de kioscos</h1>
+            <p class="intro">Ingresá el nombre y la contraseña que te dio el administrador para cargar turnos.</p>
+            <form id="kiosco-login-form">
+                <label for="kiosco-login-nombre">Nombre del kiosco</label>
+                <input id="kiosco-login-nombre" type="text" maxlength="80" autocomplete="username" required>
+                <label for="kiosco-login-password">Contraseña</label>
+                <input id="kiosco-login-password" type="password" autocomplete="current-password" required>
+                <button type="submit">Ingresar</button>
+            </form>
+            <p class="error" id="kiosco-login-error" role="status" aria-live="polite"></p>
+        </section>
+
+        <section id="kiosco-panel" hidden>
+            <div class="kiosco-top">
+                <div>
+                    <a class="back" href="/">← Volver al sitio</a>
+                    <h1>Cargar turno</h1>
+                    <p>Sesión: <strong id="kiosco-identidad"></strong></p>
+                </div>
+                <button class="secondary" id="kiosco-salir" type="button">Salir</button>
+            </div>
+            <p class="intro">Los turnos que cargues quedarán identificados con el nombre de este kiosco.</p>
+            <form id="form-turnos" class="turnos-form" novalidate>
+                <label for="turno-servicio">Servicio</label>
+                <select id="turno-servicio" name="servicio" required>
+                    <option value="" disabled selected>Cargando servicios...</option>
+                </select>
+
+                <label for="turno-vehiculo">Tipo de vehículo</label>
+                <select id="turno-vehiculo" name="vehiculo" required>
+                    <option value="" disabled selected>Cargando vehículos...</option>
+                </select>
+                <p class="turnos-status" id="turno-precio" aria-live="polite"></p>
+
+                <label for="turno-patente">Patente</label>
+                <input id="turno-patente" name="patente" type="text" autocomplete="off" maxlength="10"
+                    placeholder="AB123CD" pattern="[A-Za-z0-9 -]{6,10}" required>
+
+                <label for="turno-fecha">Día</label>
+                <input id="turno-fecha" name="fecha" type="date" required>
+
+                <div>
+                    <span class="turnos-label">Horario</span>
+                    <div class="turno-slots" id="turno-horarios" aria-live="polite"></div>
+                </div>
+
+                <label for="turno-nombre">Nombre del cliente</label>
+                <input id="turno-nombre" name="nombre" type="text" autocomplete="name" maxlength="60" required>
+
+                <label for="turno-telefono">Teléfono del cliente</label>
+                <input id="turno-telefono" name="telefono" type="tel" autocomplete="tel" maxlength="20" required>
+
+                <button class="turnos-submit" type="submit">Cargar turno</button>
+                <p class="turnos-status" id="turno-mensaje" role="status"></p>
+            </form>
+        </section>
+    </main>
+    <script src="/js/turnos.js"></script>
+    <script src="/js/kiosco.js"></script>
+</body>
+</html>

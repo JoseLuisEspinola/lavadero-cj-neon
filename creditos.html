@@ -25,6 +25,7 @@
 
     <link rel="shortcut icon" type="Image/png" href="./img/logo-lavaderocj.png">
     <link rel="stylesheet" href="./css/creditos.css">
+    <link rel="stylesheet" href="./css/nav-dropdown.css?v=1">
     <title>Créditos | Lavadero CJ</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
@@ -58,7 +59,13 @@
             <li><a href="galeria.html" class="link-animado">Galería</a></li>
             <li><a href="index.html#section-turnos" class="link-animado">Turnos</a></li>
             <li><a href="index.html#section-form" class="link-animado">Contacto</a></li>
-            <li><a href="/admin" class="link-animado">DATOS</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle link-animado" type="button" aria-expanded="false" aria-controls="datos-menu">DATOS</button>
+                <ul class="nav-submenu" id="datos-menu">
+                    <li><a href="/admin" class="link-animado">Admin</a></li>
+                    <li><a href="/kiosco.html" class="link-animado">Kioscos</a></li>
+                </ul>
+            </li>
         </ul>
 
         <!-- Botones de redes centrados -->
@@ -182,6 +189,7 @@
     </script>
 
     <script src="/js/menu.js"></script>
+    <script src="/js/nav-dropdown.js?v=1"></script>
 </body>
 
 </html>

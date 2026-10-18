@@ -1,0 +1,449 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    /* Fondos y Bases Oscuras */
+    --color04: #232b1f;
+    --color06: #121614; /* Fondo tirando a verde extremadamente oscuro */
+    --color08: #1a221d;
+    --color10: #090d14; /* Negro profundo del fondo del cartel */
+    --color12: #0f1622; /* Azul noche oscuro (sombras y contornos base) */
+    --color14: #1a2436; /* Azul grisáceo oscuro (matices del fondo urbano) */
+    --color16: #0d1b2a;
+
+    /* Gama de Celestes y Azules Eléctricos (Detalles del agua, burbujas y letras) */
+    --color20: #0096c7; /* Azul Francia/Cian intenso (sombras de las letras y salpicaduras) */
+    --color22: #3a86ff; /* Azul eléctrico vibrante (destellos del agua) */
+    --color24: #48cae4; /* Celeste vivo (cuerpo principal de las letras y burbujas) */
+    --color26: #90e0ef; /* Celeste claro/pastoso (luces en el agua y volumen de letras) */
+    --color28: #caf0f8; /* Celeste blanquecino (brillos intensos y espuma最高 y textos) */
+
+    /* Gama Verde Agua y Tonos Neón (El toque distintivo de Lavadero JES) */
+    --color30: #00f5d4; /* Verde agua neón / Turquesa brillante (bordes iluminados y grafitis) */
+    --color32: #00bbf9; /* Cian aguamarina equilibrado (transición entre celeste y verde agua) */
+    --color34: #70e000; /* Verde lima/agua ácido (los detalles más encendidos del fondo y goteos) */
+    --color36: #38b000; /* Verde medio (sombras de los grafitis neón) */
+    --color38: #205040; /* Verde agua apagado / Musgo oscuro (sombras internas de la máscara) */
+
+    /* Grises y Metalizados (Estructura de la máscara, llantas y partes del auto) */
+    --color40: #2b2d42; /* Gris grafito oscuro (carrocería del auto y base de la máscara) */
+    --color42: #8d99ae; /* Gris metálico/plata (reflejos en llantas y ópticas) */
+
+    /* Destacados, Textos Secundarios y Luces Absolutas */
+    --color50: #ccff00; /* Amarillo flúor / Lima puro (para el "Siempre con fe" y trazos rebeldes) */
+    --color52: #ffffff; /* Blanco puro (centros de brillos, espuma y textos limpios) */
+    --color54: #000000; /* Negro absoluto (para contornos y detalles más oscuros) */
+    --color56: #e0fa7a; /* Amarillo suave (para resaltados y elementos decorativos) */
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    /* font-family: "Montserrat", Arial, Helvetica, sans-serif; */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* html {
+    scroll-behavior: smooth;
+} */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    background: var(--color16);
+    transition: 0.5s;
+    z-index: 100;
+}
+
+/* Muy importante para el efecto de animación */
+/* nav a span { display: inline-block; } */
+
+nav.abajo {
+    background-color: rgb(13, 27, 42, 0.9);
+    box-shadow: 0 0 20px var(--color72);
+    transition: 0.5s;
+}
+
+#check {
+    display: none;
+}
+
+.checkbtn {
+    font-size: 34px;
+    color: var(--color22);
+    /* esto hace que el icono quede a la derecha */
+    float: right;
+    cursor: pointer;
+    display: none;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo .enlace img {
+    height: 44px;
+    width: 44px;
+    border-radius: 10%;
+    animation: animation-logo 10s ease-in-out infinite;
+}
+
+@keyframes animation-logo {
+    0% {
+        transform: rotateY(0);
+    }
+
+    20% {
+        transform: rotateY(180deg);
+    }
+
+    60%,
+    100% {
+        transform: rotateY(0);
+    }
+}
+
+.logo {
+    gap: 10px;
+}
+
+.logo a img {
+    width: 50px;
+    height: 50px;
+}
+
+.names {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-name {
+    color: var(--color52);
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: 0.5s;
+}
+
+.main-name:hover {
+    color: var(--color34);
+    /* text-shadow: 1px 1px var(--color30); */
+    transition: 0.5s;
+}
+
+.main-name b {
+    color: var(--color34);
+    transition: 0.5s;
+}
+
+.main-namesito {
+    margin-top: 4px;
+    color: var(--color52);
+    font-size: 0.80rem;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+nav ul li {
+    padding: 6px;
+}
+
+nav ul li a {
+    position: relative;
+    display: inline-block;
+    padding: 6px;
+    color: var(--color22);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+nav ul li a:hover {
+    color: var(--color24);
+}
+
+/* nav.abajo ul li a {
+    color: var(--color30);
+} */
+
+nav.abajo ul li a:hover {
+    color: var(--color52);
+}
+
+li a:after {
+    content: "";
+    position: absolute;
+    background-color: var(--color24);
+    height: 4px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+
+li a:hover:after {
+    width: 100%;
+}
+
+li a:focus {
+    color: var(--color20);
+}
+
+.nav-redes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-redes a {
+    display: block;
+    width: clamp(20px, 7vw, 40px);
+    height: clamp(20px, 7vw, 40px);
+    transition: transform 0.3s;
+}
+
+.nav-redes a:hover {
+    transform: scale(0.9);
+}
+
+.nav-redes img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+nav.abajo .checkbtn {
+    color: var(--color22);
+}
+
+
+
+
+/* ***************************** */
+/* ****** Luego del Navbar ***** */
+/* ***************************** */
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 80px 0 0;
+    min-height: 100vh;
+    padding: 28px 18px;
+    color: #fff;
+    background: var(--color14);
+}
+
+main {
+    /* border: 1px solid red; */
+    max-width: min(100%, 90vw); 
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    margin: 8px 0;
+    color: #ccff00;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+}
+
+.back {
+    color: #48cae4;
+    text-decoration: none;
+}
+
+.back:hover,
+.back:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.intro {
+    max-width: 42ch;
+    color: #d1d9e0;
+}
+
+#login {
+    max-width: 430px;
+    margin: min(12vh, 110px) auto;
+    padding: 28px;
+    border: 1px solid #205040;
+    border-radius: 14px;
+    background: #0f1622;
+}
+
+#login form,
+.turnos-form {
+    display: grid;
+    gap: 10px;
+}
+
+label,
+.turnos-label {
+    color: var(--color26);
+    font-weight: 600;
+}
+
+input,
+select {
+    width: 100%;
+    min-width: 0;
+    margin: 0 0 8px;
+    padding: 11px 12px;
+    color: #fff;
+    background: #090d14;
+    border: 1px solid #8d99ae;
+    border-radius: 7px;
+    font: inherit;
+}
+
+select option {
+    color: #fff;
+    background: #090d14;
+}
+
+button {
+    padding: 10px 16px;
+    margin-top: 10px;
+    color: var(--color54);
+    background: var(--color50);
+    border: 0;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--color56);
+}
+
+button:disabled {
+    opacity: .55;
+    cursor: wait;
+}
+
+button.secondary {
+    padding: 8px 10px;
+    color: #fff;
+    background: #1a2436;
+    border: 1px solid #48cae4;
+}
+
+button.secondary:hover {
+    background: #205040;
+}
+
+.error {
+    min-height: 1.5em;
+    color: #ff9c9c;
+    font-weight: 600;
+}
+
+#kiosco-panel {
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+.kiosco-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+#kiosco-panel .intro {
+    margin: 10px 0;
+}
+
+.turnos-form {
+    margin: 26px auto 0;
+    padding: 24px;
+    border: 1px solid #205040;
+    border-radius: 12px;
+    background: #0f1622;
+}
+
+.turno-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 8px;
+}
+
+.turno-slot {
+    min-width: 82px;
+    padding: 9px 13px;
+    color: #fff;
+    background: #0f1622;
+    border: 1px solid #8d99ae;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.turno-slot[aria-pressed="true"] {
+    color: #000;
+    background: #ccff00;
+    border-color: #ccff00;
+}
+
+.turno-slot:disabled {
+    opacity: .42;
+    text-decoration: line-through;
+    cursor: not-allowed;
+}
+
+.turnos-submit {
+    justify-self: start;
+    padding: 11px 20px;
+    color: #000;
+    background: #ccff00;
+    border: 1px solid #ccff00;
+}
+
+.turnos-submit:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+.turnos-status {
+    min-height: 1.5em;
+    margin: 0;
+    color: #48cae4;
+}
+
+@media (max-width: 560px) {
+    body {
+        padding: 18px 12px;
+    }
+
+    #login {
+        margin: 8vh auto;
+        padding: 22px;
+    }
+
+    .turnos-form {
+        padding: 18px;
+    }
+
+    .kiosco-top {
+        align-items: flex-start;
+    }
+}

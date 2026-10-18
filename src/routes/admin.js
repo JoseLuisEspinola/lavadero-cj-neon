@@ -2,9 +2,10 @@ const crypto = require('crypto');
 const express = require('express');
 const db = require('../db');
 const cfg = require('../config');
-const { ymd, hoy, parseFecha } = require('../fechas');
+const { parseFecha } = require('../fechas');
 const { limitador } = require('../limit');
 const { ah } = require('../util');
+const { crearPasswordHash } = require('../kiosco-auth');
 
 const router = express.Router();
 const PASSWORD = process.env.ADMIN_PASSWORD || '';
@@ -65,21 +66,99 @@ router.post('/logout', (req, res) => {
 
 router.get('/sesion', (req, res) => res.json({ activa: habilitado && sesionValida(req), habilitado }));
 
+router.get('/cupos', requiereAdmin, ah(async (req, res) => {
+  res.json({ cupos: await db.obtenerCupos() });
+}));
+
+router.put('/cupos', requiereAdmin, ah(async (req, res) => {
+  const cupos = req.body && req.body.cupos;
+  if (!Number.isSafeInteger(cupos) || cupos < 1 || cupos > 50) {
+    return res.status(400).json({ error: 'La capacidad debe ser un número entero entre 1 y 50.' });
+  }
+  await db.actualizarCupos(cupos);
+  res.json({ ok: true, cupos });
+}));
+
 router.get('/turnos', requiereAdmin, ah(async (req, res) => {
-  const desde = req.query.desde || ymd(hoy());
+  const desde = req.query.desde || null;
   const hasta = req.query.hasta || null;
-  if (!parseFecha(desde) || (hasta && !parseFecha(hasta)) ||
-      (hasta && hasta < desde)) {
-    return res.status(400).json({ error: 'Revisá el rango de fechas.' });
+  const kiosco = String(req.query.kiosco || 'todos');
+  const kioscoId = Number(kiosco);
+  if ((desde && !parseFecha(desde)) || (hasta && !parseFecha(hasta)) ||
+      (desde && hasta && hasta < desde) ||
+      (kiosco !== 'todos' && kiosco !== 'clientes' &&
+        (!/^\d+$/.test(kiosco) || !Number.isSafeInteger(kioscoId) || kioscoId < 1 || kioscoId > 2147483647))) {
+    return res.status(400).json({ error: 'Revisá el rango de fechas y el kiosco seleccionado.' });
   }
   const result = await db.query(
-    'SELECT id, fecha, hora, servicio, vehiculo, precio, nombre, telefono, estado FROM turnos WHERE fecha >= $1 AND ($2::text IS NULL OR fecha <= $2) ORDER BY fecha, hora, id',
-    [desde, hasta]
+    "SELECT t.id, t.fecha, t.hora, t.servicio, t.vehiculo, t.precio, t.nombre, t.telefono, t.patente, t.estado, t.kiosco_id, COALESCE(k.nombre, 'Cliente') AS origen " +
+      'FROM turnos t LEFT JOIN kioscos k ON k.id = t.kiosco_id ' +
+      "WHERE ($1::text IS NULL OR t.fecha >= $1) AND ($2::text IS NULL OR t.fecha <= $2) " +
+      "AND ($3::text = 'todos' OR ($3::text = 'clientes' AND t.kiosco_id IS NULL) OR t.kiosco_id = CASE WHEN $3 ~ '^[0-9]+$' THEN $3::integer ELSE NULL END) " +
+      'ORDER BY t.fecha, t.hora, t.id',
+    [desde, hasta, kiosco]
   );
   res.json(result.rows.map((row) => {
     const vehiculo = cfg.VEHICULOS.find((item) => item.id === row.vehiculo);
     return Object.assign({}, row, { vehiculo: vehiculo ? vehiculo.nombre : row.vehiculo });
   }));
+}));
+
+router.get('/kioscos', requiereAdmin, ah(async (req, res) => {
+  const result = await db.query('SELECT id, nombre, activo FROM kioscos ORDER BY lower(nombre)');
+  res.json(result.rows);
+}));
+
+router.post('/kioscos', requiereAdmin, ah(async (req, res) => {
+  const body = req.body || {};
+  const nombre = String(body.nombre || '').trim();
+  const password = String(body.password || '');
+  if (nombre.length < 2 || nombre.length > 80) {
+    return res.status(400).json({ error: 'El nombre del kiosco debe tener entre 2 y 80 caracteres.' });
+  }
+  if (password.length < 12 || password.length > 200) {
+    return res.status(400).json({ error: 'La contraseña debe tener entre 12 y 200 caracteres.' });
+  }
+  const salt = crypto.randomBytes(16).toString('hex');
+  const passwordHash = await crearPasswordHash(password, salt);
+  try {
+    const result = await db.query(
+      'INSERT INTO kioscos (nombre, salt, password_hash) VALUES ($1, $2, $3) RETURNING id, nombre, activo',
+      [nombre, salt, passwordHash]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    if (error.code === '23505') return res.status(409).json({ error: 'Ya existe un kiosco con ese nombre.' });
+    throw error;
+  }
+}));
+
+router.patch('/kioscos/:id', requiereAdmin, ah(async (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isSafeInteger(id) || id < 1) return res.status(400).json({ error: 'Kiosco inválido.' });
+  const body = req.body || {};
+  const cambiaEstado = typeof body.activo === 'boolean';
+  const cambiaPassword = typeof body.password === 'string';
+  if (cambiaEstado === cambiaPassword ||
+      (cambiaPassword && (body.password.length < 12 || body.password.length > 200))) {
+    return res.status(400).json({ error: 'Indicá si el kiosco queda activo o una nueva contraseña (mínimo 12 caracteres).' });
+  }
+  let result;
+  if (cambiaPassword) {
+    const salt = crypto.randomBytes(16).toString('hex');
+    const passwordHash = await crearPasswordHash(body.password, salt);
+    result = await db.query(
+      'UPDATE kioscos SET salt = $1, password_hash = $2 WHERE id = $3 RETURNING id',
+      [salt, passwordHash, id]
+    );
+  } else {
+    result = await db.query(
+      'UPDATE kioscos SET activo = $1 WHERE id = $2 RETURNING id',
+      [body.activo, id]
+    );
+  }
+  if (!result.rowCount) return res.status(404).json({ error: 'No se encontró ese kiosco.' });
+  res.json({ ok: true });
 }));
 
 router.get('/precios', requiereAdmin, ah(async (req, res) => {

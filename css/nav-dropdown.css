@@ -1,0 +1,133 @@
+.navbar .nav-dropdown {
+    position: relative;
+}
+
+.navbar .nav-dropdown-toggle {
+    position: relative;
+    display: inline-block;
+    padding: 6px 20px 6px 6px;
+    color: var(--color22, #3a86ff);
+    background: transparent;
+    border: 0;
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.navbar .nav-dropdown-toggle:hover,
+.navbar .nav-dropdown-toggle:focus-visible {
+    color: var(--color24, #48cae4);
+}
+
+.navbar .nav-dropdown-toggle::after {
+    position: absolute;
+    top: 45%;
+    right: 4px;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    content: "";
+    transform: translateY(-50%) rotate(45deg);
+    transition: transform 0.2s ease;
+}
+
+.navbar .nav-dropdown.open .nav-dropdown-toggle::after {
+    transform: translateY(0) rotate(225deg);
+}
+
+.navbar .nav-dropdown .nav-submenu {
+    position: absolute;
+    z-index: 120;
+    top: 100%;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: max-content;
+    min-width: 150px;
+    margin: 0;
+    padding: 6px;
+    border: 1px solid var(--color38, #205040);
+    border-radius: 8px;
+    background: var(--color12, #0f1622);
+    box-shadow: 0 8px 20px rgb(0 0 0 / 30%);
+    text-align: left;
+}
+
+.navbar .nav-dropdown:hover .nav-submenu,
+.navbar .nav-dropdown:focus-within .nav-submenu,
+.navbar .nav-dropdown.open .nav-submenu {
+    display: flex;
+}
+
+.navbar .nav-dropdown .nav-submenu li {
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
+
+.navbar .nav-dropdown .nav-submenu a {
+    display: block;
+    padding: 9px 12px;
+    color: var(--color22, #3a86ff);
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.navbar .nav-dropdown .nav-submenu a:hover,
+.navbar .nav-dropdown .nav-submenu a:focus-visible {
+    color: var(--color24, #48cae4);
+    background: var(--color14, #1a2436);
+}
+
+.navbar .nav-dropdown .nav-submenu a::after {
+    display: none;
+}
+
+@media (max-width: 1090px) {
+    .navbar .nav-dropdown-toggle {
+        font-size: 20px;
+    }
+
+    .navbar .nav-dropdown .nav-submenu {
+        position: static;
+        display: none;
+        width: auto;
+        height: auto;
+        min-width: 0;
+        margin: 8px auto 0;
+        padding: 4px 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        text-align: center;
+        top: auto;
+        left: auto;
+        transform: none;
+        overflow: visible;
+        transition: none;
+    }
+
+    .navbar .nav-dropdown:hover .nav-submenu,
+    .navbar .nav-dropdown:focus-within .nav-submenu {
+        display: none;
+    }
+
+    .navbar .nav-dropdown.open .nav-submenu {
+        display: flex;
+    }
+
+    .navbar .nav-dropdown .nav-submenu li {
+        margin: 4px 0;
+        line-height: 24px;
+    }
+
+    .navbar .nav-dropdown .nav-submenu a {
+        font-size: 18px;
+    }
+}

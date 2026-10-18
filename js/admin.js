@@ -38,8 +38,9 @@
         $('login').hidden = autenticado;
         $('panel').hidden = !autenticado;
         if (autenticado) {
-            cargar();
+            cargarKioscos().then(cargar).catch(fallo);
             cargarPrecios();
+            cargarCupos();
         }
     }
     function fallo(error) {
@@ -52,12 +53,15 @@
     }
     function cargar() {
         $('panel-error').textContent = '';
-        var urlTurnos = '/api/admin/turnos?desde=' + encodeURIComponent($('desde').value);
-        if ($('hasta').value) urlTurnos += '&hasta=' + encodeURIComponent($('hasta').value);
-        api(urlTurnos)
+        var params = new URLSearchParams();
+        if ($('desde').value) params.set('desde', $('desde').value);
+        if ($('hasta').value) params.set('hasta', $('hasta').value);
+        params.set('kiosco', $('filtro-kiosco').value);
+        api('/api/admin/turnos?' + params.toString())
             .then(function (rows) {
                 var body = $('filas');
                 var recaudado = 0;
+                var realizados = 0;
                 var reservado = 0;
                 var aCotizar = 0;
                 var sinImporte = 0;
@@ -65,20 +69,22 @@
                 body.replaceChildren();
                 if (!rows.length) {
                     var emptyRow = element('tr');
-                    var emptyCell = element('td', 'No hay turnos en ese rango de fechas.');
-                    emptyCell.colSpan = 8;
+                    var emptyCell = element('td', 'No hay turnos con esos filtros.');
+                    emptyCell.colSpan = 10;
                     emptyRow.appendChild(emptyCell);
                     body.appendChild(emptyRow);
                 }
                 rows.forEach(function (row) {
                     var tr = element('tr', null, row.estado === 'cancelado' ? 'cancelado' : (row.estado === 'realizado' ? 'realizado' : ''));
-                    [formatDate(row.fecha), row.hora, row.servicio, row.vehiculo || '—', row.nombre, row.telefono].forEach(function (value) {
+                    [formatDate(row.fecha), row.hora, row.servicio, row.vehiculo || '—',
+                        row.patente || '—', row.nombre, row.telefono, row.origen].forEach(function (value) {
                         tr.appendChild(element('td', value));
                     });
                     var importe = row.precio == null
                         ? (row.vehiculo ? 'A cotizar' : '—')
                         : formatoPesos(row.precio);
                     tr.appendChild(element('td', importe));
+                    if (row.estado === 'realizado') realizados++;
                     if (row.estado === 'realizado' && row.precio != null) recaudado += row.precio;
                     if (row.estado === 'confirmado' && row.precio != null) reservado += row.precio;
                     if (row.estado === 'confirmado' && row.vehiculo && row.precio == null) aCotizar++;
@@ -116,7 +122,8 @@
                     body.appendChild(tr);
                 });
                 $('resumen-turnos').textContent =
-                    'Recaudado (realizados): ' + formatoPesos(recaudado) +
+                    'Turnos realizados: ' + realizados +
+                    ' · Importe de realizados: ' + formatoPesos(recaudado) +
                     ' · Reservado pendiente: ' + formatoPesos(reservado) +
                     ' · A cotizar: ' + aCotizar +
                     ' · Históricos sin importe: ' + sinImporte +
@@ -158,6 +165,74 @@
             });
         }).catch(fallo);
     }
+    function cargarCupos() {
+        $('cupos-estado').textContent = '';
+        api('/api/admin/cupos').then(function (result) {
+            $('cupos-valor').value = result.cupos;
+        }).catch(function (error) {
+            $('cupos-estado').textContent = error.message;
+        });
+    }
+    function cargarKioscos() {
+        return api('/api/admin/kioscos').then(function (kioscos) {
+            var filtro = $('filtro-kiosco');
+            var seleccionado = filtro.value || 'todos';
+            filtro.replaceChildren(element('option', 'Todos (kioscos y clientes)'));
+            filtro.options[0].value = 'todos';
+            filtro.appendChild(element('option', 'Clientes'));
+            filtro.options[1].value = 'clientes';
+            kioscos.forEach(function (kiosco) {
+                var option = element('option', kiosco.nombre + (kiosco.activo ? '' : ' (inactivo)'));
+                option.value = String(kiosco.id);
+                filtro.appendChild(option);
+            });
+            filtro.value = seleccionado;
+
+            var lista = $('kioscos-lista');
+            lista.replaceChildren();
+            if (!kioscos.length) lista.appendChild(element('p', 'Todavía no hay kioscos registrados.'));
+            kioscos.forEach(function (kiosco) {
+                var item = element('article', null, 'kiosco-cuenta');
+                item.appendChild(element('strong', kiosco.nombre + (kiosco.activo ? ' · Activo' : ' · Inactivo')));
+                var estado = element('button', kiosco.activo ? 'Desactivar' : 'Activar', 'secondary');
+                estado.type = 'button';
+                estado.onclick = function () {
+                    api('/api/admin/kioscos/' + encodeURIComponent(kiosco.id), {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ activo: !kiosco.activo }),
+                    }).then(function () {
+                        $('kioscos-estado').textContent = 'Estado del kiosco actualizado.';
+                        return cargarKioscos();
+                    }).then(cargar).catch(function (error) {
+                        $('kioscos-estado').textContent = error.message;
+                    });
+                };
+                item.appendChild(estado);
+                var clave = element('button', 'Cambiar contraseña', 'secondary');
+                clave.type = 'button';
+                clave.onclick = function () {
+                    var password = prompt('Ingresá la nueva contraseña (mínimo 12 caracteres).');
+                    if (password === null) return;
+                    if (password.length < 12 || password.length > 200) {
+                        $('kioscos-estado').textContent = 'La contraseña debe tener entre 12 y 200 caracteres.';
+                        return;
+                    }
+                    api('/api/admin/kioscos/' + encodeURIComponent(kiosco.id), {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ password: password }),
+                    }).then(function () {
+                        $('kioscos-estado').textContent = 'Contraseña actualizada. Compartila solo con ese kiosco.';
+                    }).catch(function (error) {
+                        $('kioscos-estado').textContent = error.message;
+                    });
+                };
+                item.appendChild(clave);
+                lista.appendChild(item);
+            });
+        });
+    }
     var turnoRealizado = null;
     function abrirDialogoRealizado(row) {
         turnoRealizado = row;
@@ -173,9 +248,10 @@
         else $('realizado-confirmar').focus();
     }
 
-    $('desde').value = ymd(new Date());
+    $('desde').value = '';
     $('hasta').value = '';
     $('ver').onclick = cargar;
+    $('filtro-kiosco').addEventListener('change', cargar);
     $('realizado-volver').onclick = function () {
         $('realizado-dialog').close();
         turnoRealizado = null;
@@ -220,6 +296,39 @@
             $('precios-estado').textContent = 'Precios guardados. Se aplican a los próximos turnos.';
         }).catch(function (error) {
             $('precios-estado').textContent = error.message;
+        });
+    });
+    $('cupos-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var cupos = Number($('cupos-valor').value);
+        $('cupos-estado').textContent = '';
+        api('/api/admin/cupos', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cupos: cupos }),
+        }).then(function (result) {
+            $('cupos-valor').value = result.cupos;
+            $('cupos-estado').textContent = 'Capacidad guardada: ' + result.cupos + ' vehículos por horario.';
+        }).catch(function (error) {
+            $('cupos-estado').textContent = error.message;
+        });
+    });
+    $('kiosco-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        $('kioscos-estado').textContent = '';
+        api('/api/admin/kioscos', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                nombre: $('kiosco-nombre').value.trim(),
+                password: $('kiosco-password').value,
+            }),
+        }).then(function () {
+            $('kiosco-form').reset();
+            $('kioscos-estado').textContent = 'Acceso creado. Compartí el nombre y la contraseña con ese kiosco.';
+            return cargarKioscos();
+        }).then(cargar).catch(function (error) {
+            $('kioscos-estado').textContent = error.message;
         });
     });
     $('salir').onclick = function () {

@@ -28,7 +28,8 @@
 
     <link rel="shortcut icon" type="Image/png" href="./img/logo-lavaderocj.png">
     <link rel="stylesheet" href="./css/styles.css">
-    <!-- <link rel="stylesheet" href="./css/reservas.css"> -->
+    <link rel="stylesheet" href="./css/reservas.css">
+    <link rel="stylesheet" href="./css/nav-dropdown.css?v=1">
     <title>Lavadero de autos en Manuel Alberti, Zona Norte | Lavadero CJ</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
@@ -83,7 +84,13 @@
           <li><a href="galeria.html" class="link-animado">Galería</a></li>
           <li><a href="#section-turnos" class="link-animado">Turnos</a></li>
           <li><a href="#section-form" class="link-animado">Contacto</a></li>
-          <li><a href="admin.html" class="link-animado">DATOS</a></li>
+          <li class="nav-dropdown">
+              <button class="nav-dropdown-toggle link-animado" type="button" aria-expanded="false" aria-controls="datos-menu">DATOS</button>
+              <ul class="nav-submenu" id="datos-menu">
+                  <li><a href="/admin" class="link-animado">Admin</a></li>
+                  <li><a href="/kiosco.html" class="link-animado">Kioscos</a></li>
+              </ul>
+          </li>
       </ul>
 
       <!-- Botones de redes centrados -->
@@ -522,6 +529,10 @@
             </select>
             <p class="turnos-status" id="turno-precio" aria-live="polite"></p>
 
+            <label for="turno-patente">Patente</label>
+            <input id="turno-patente" name="patente" type="text" autocomplete="off" maxlength="10"
+                placeholder="AB123CD" pattern="[A-Za-z0-9 -]{6,10}" required>
+
             <label for="turno-fecha">Día</label>
             <input id="turno-fecha" name="fecha" type="date" required>
 
@@ -679,11 +690,12 @@
     </footer>
 
     <script src="./js/menu.js"></script>
+    <script src="./js/nav-dropdown.js?v=1"></script>
     <script src="./js/carrusel-main.js"></script>
     <script src="./js/preguntas.js"></script>
     <script src="./js/busqueda.js"></script>
     <script src="./js/valid-contacto.js"></script>
-    <script src="./js/turnos.js?v=2"></script>
+    <script src="./js/turnos.js?v=3"></script>
     </script>
     <!-- Incluir la biblioteca de ScrollReveal -->
     <script src="https://unpkg.com/scrollreveal"></script>

@@ -28,6 +28,7 @@ if (!enVercel) {
 app.use(express.json({ limit: '10kb' }));
 app.use('/api', require('./routes/turnos'));
 app.use('/api', require('./routes/contacto'));
+app.use('/api/kiosco', require('./routes/kiosco'));
 app.use('/api/admin', require('./routes/admin'));
 app.use('/api', (req, res) => res.status(404).json({ error: 'No encontrado.' }));
 

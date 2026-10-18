@@ -4,6 +4,7 @@
 
     var servicio = document.getElementById('turno-servicio');
     var vehiculo = document.getElementById('turno-vehiculo');
+    var patente = document.getElementById('turno-patente');
     var fecha = document.getElementById('turno-fecha');
     var horariosBox = document.getElementById('turno-horarios');
     var mensaje = document.getElementById('turno-mensaje');
@@ -144,8 +145,9 @@
         event.preventDefault();
         var nombre = document.getElementById('turno-nombre').value.trim();
         var telefono = document.getElementById('turno-telefono').value.trim();
-        if (!seleccion || !nombre || !telefono) {
-            aviso('Elegí un horario y completá nombre y teléfono.');
+        var patenteValue = patente.value.trim();
+        if (!seleccion || !nombre || !telefono || !patenteValue) {
+            aviso('Elegí un horario y completá nombre, teléfono y patente.');
             return;
         }
         submit.disabled = true;
@@ -160,12 +162,14 @@
                 hora: seleccion,
                 nombre: nombre,
                 telefono: telefono,
+                patente: patenteValue,
             }),
         }).then(function (result) {
             var parts = result.fecha.split('-');
             aviso('¡Turno reservado! ' + parts[2] + '/' + parts[1] + ' a las ' + result.hora + '. Te esperamos, ' + nombre + '.');
             document.getElementById('turno-nombre').value = '';
             document.getElementById('turno-telefono').value = '';
+            patente.value = '';
             cargarHorarios();
         }).catch(function (error) {
             aviso(error.message);

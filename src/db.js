@@ -18,6 +18,19 @@ function getPool() {
 }
 
 const SCHEMA = `
+  CREATE TABLE IF NOT EXISTS kioscos (
+    id        SERIAL PRIMARY KEY,
+    nombre    TEXT NOT NULL,
+    salt      TEXT NOT NULL,
+    password_hash TEXT NOT NULL,
+    activo    BOOLEAN NOT NULL DEFAULT TRUE,
+    creado    TIMESTAMPTZ NOT NULL DEFAULT now()
+  );
+  CREATE UNIQUE INDEX IF NOT EXISTS idx_kioscos_nombre_lower ON kioscos (lower(nombre));
+  CREATE TABLE IF NOT EXISTS configuracion (
+    clave TEXT PRIMARY KEY,
+    valor TEXT NOT NULL
+  );
   CREATE TABLE IF NOT EXISTS turnos (
     id        SERIAL PRIMARY KEY,
     fecha     TEXT NOT NULL,
@@ -33,6 +46,9 @@ const SCHEMA = `
   CREATE INDEX IF NOT EXISTS idx_turnos_fecha_hora ON turnos (fecha, hora, estado);
   ALTER TABLE turnos ADD COLUMN IF NOT EXISTS vehiculo TEXT;
   ALTER TABLE turnos ADD COLUMN IF NOT EXISTS precio INTEGER;
+  ALTER TABLE turnos ADD COLUMN IF NOT EXISTS patente TEXT;
+  ALTER TABLE turnos ADD COLUMN IF NOT EXISTS kiosco_id INTEGER REFERENCES kioscos(id) ON DELETE SET NULL;
+  CREATE INDEX IF NOT EXISTS idx_turnos_kiosco_fecha ON turnos (kiosco_id, fecha);
   CREATE TABLE IF NOT EXISTS precios_vehiculos (
     vehiculo TEXT PRIMARY KEY,
     importe  INTEGER NOT NULL CHECK (importe >= 0)
@@ -78,6 +94,10 @@ function init() {
           [id, importe]
         )
       ));
+      await getPool().query(
+        "INSERT INTO configuracion (clave, valor) VALUES ('cupos', $1) ON CONFLICT (clave) DO NOTHING",
+        [String(cfg.CUPOS)]
+      );
     })().catch((error) => { listo = null; throw error; });
   }
   return listo;
@@ -88,18 +108,38 @@ async function query(text, params) {
   return getPool().query(text, params);
 }
 
+async function obtenerCupos(client) {
+  if (!client) await init();
+  const result = await (client || getPool()).query(
+    "SELECT valor::integer AS cupos FROM configuracion WHERE clave = 'cupos'"
+  );
+  if (!result.rowCount || !Number.isSafeInteger(result.rows[0].cupos) || result.rows[0].cupos < 1) {
+    throw new Error('La cantidad de cupos configurada no es válida.');
+  }
+  return result.rows[0].cupos;
+}
+
+async function actualizarCupos(cupos) {
+  await init();
+  await getPool().query(
+    "INSERT INTO configuracion (clave, valor) VALUES ('cupos', $1) ON CONFLICT (clave) DO UPDATE SET valor = EXCLUDED.valor",
+    [String(cupos)]
+  );
+}
+
 async function reservar(turno, hoyStr) {
   await init();
   const client = await getPool().connect();
   try {
     await client.query('BEGIN');
     await client.query('SELECT pg_advisory_xact_lock(hashtext($1))', [`${turno.fecha} ${turno.hora}`]);
+    const cupos = await obtenerCupos(client);
 
     const ocupados = await client.query(
       "SELECT COUNT(*)::int AS n FROM turnos WHERE fecha = $1 AND hora = $2 AND estado = 'confirmado'",
       [turno.fecha, turno.hora]
     );
-    if (ocupados.rows[0].n >= cfg.CUPOS) {
+    if (ocupados.rows[0].n >= cupos) {
       await client.query('ROLLBACK');
       return { error: 'ocupado' };
     }
@@ -125,8 +165,8 @@ async function reservar(turno, hoyStr) {
     }
 
     const result = await client.query(
-      'INSERT INTO turnos (fecha, hora, servicio, vehiculo, precio, nombre, telefono) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id',
-      [turno.fecha, turno.hora, turno.servicio, turno.vehiculo, precio, turno.nombre, turno.telefono]
+      'INSERT INTO turnos (fecha, hora, servicio, vehiculo, precio, nombre, telefono, patente, kiosco_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id',
+      [turno.fecha, turno.hora, turno.servicio, turno.vehiculo, precio, turno.nombre, turno.telefono, turno.patente, turno.kioscoId || null]
     );
     await client.query('COMMIT');
     return { id: result.rows[0].id };
@@ -167,4 +207,4 @@ async function marcarRealizado(id, importe) {
   );
 }
 
-module.exports = { query, reservar, actualizarPrecios, marcarRealizado };
+module.exports = { query, reservar, actualizarCupos, actualizarPrecios, marcarRealizado, obtenerCupos };

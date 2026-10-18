@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
     <title>DATOS - Lavadero CJ</title>
-    <link rel="stylesheet" href="/css/admin.css?v=2">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/nav-dropdown.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -36,7 +37,13 @@
           <li><a href="galeria.html" class="link-animado">Galería</a></li>
           <li><a href="index.html#section-turnos" class="link-animado">Turnos</a></li>
           <li><a href="index.html#section-form" class="link-animado">Contacto</a></li>
-          <li><a href="#" class="link-animado">DATOS</a></li>
+          <li class="nav-dropdown">
+              <button class="nav-dropdown-toggle link-animado" type="button" aria-expanded="false" aria-controls="datos-menu">DATOS</button>
+              <ul class="nav-submenu" id="datos-menu">
+                  <li><a href="/admin.html" class="link-animado">Admin</a></li>
+                  <li><a href="/kiosco.html" class="link-animado">Kioscos</a></li>
+              </ul>
+          </li>
       </ul>
 
       <!-- Botones de redes centrados -->
@@ -83,8 +90,14 @@
                 <input type="date" id="desde">
                 <label for="hasta">Hasta</label>
                 <input type="date" id="hasta">
+                <label for="filtro-kiosco">Origen / kiosco</label>
+                <select id="filtro-kiosco">
+                    <option value="todos">Todos (kioscos y clientes)</option>
+                    <option value="clientes">Clientes</option>
+                </select>
                 <button class="secondary" id="ver" type="button">Actualizar</button>
             </div>
+            <p class="texto-de-precios">Los importes de los turnos realizados se muestran para que el admin calcule las comisiones manualmente.</p>
             <div class="table-wrap">
                 <table>
                     <thead>
@@ -93,8 +106,10 @@
                             <th>Hora</th>
                             <th>Servicio</th>
                             <th>Vehículo</th>
+                            <th>Patente</th>
                             <th>Cliente</th>
                             <th>Teléfono</th>
+                            <th>Cargado por</th>
                             <th>Importe</th>
                             <th>Estado / acción</th>
                         </tr>
@@ -105,6 +120,27 @@
 
             <p id="resumen-turnos" role="status" aria-live="polite"></p>
             <p class="error" id="panel-error" role="status" aria-live="polite"></p>
+            <h2>Vehículos simultáneos por horario</h2>
+            <p class="texto-de-precios">Definí cuántos autos pueden reservar el mismo horario. El cambio se guarda en Neon y no requiere editar el servidor ni volver a desplegar. Bajar el límite no cancela turnos que ya estén reservados.</p>
+            <form id="cupos-form">
+                <label for="cupos-valor">Cantidad de vehículos</label>
+                <input id="cupos-valor" type="number" min="1" max="50" step="1" required>
+                <button type="submit">Guardar cupos</button>
+            </form>
+            <p id="cupos-estado" role="status" aria-live="polite"></p>
+            <h2>Accesos de kioscos</h2>
+            <p class="texto-de-precios">Cada kiosco tiene una cuenta propia y solo puede cargar turnos. La contraseña se guarda protegida; compartila únicamente con el kiosco correspondiente.</p>
+            <form id="kiosco-form">
+                <div id="kiosco-nuevo">
+                    <label for="kiosco-nombre">Nombre del kiosco</label>
+                    <input id="kiosco-nombre" type="text" maxlength="80" required>
+                    <label for="kiosco-password">Contraseña inicial (mínimo 12 caracteres)</label>
+                    <input id="kiosco-password" type="password" minlength="12" maxlength="200" autocomplete="new-password" required>
+                    <button type="submit">Crear acceso</button>
+                </div>
+            </form>
+            <p id="kioscos-estado" role="status" aria-live="polite"></p>
+            <div id="kioscos-lista"></div>
             <h2>Precios por tipo de vehículo</h2>
             <p class="texto-de-precios">Estos importes se aplican a los nuevos turnos de lavado. Los servicios a cotizar y los turnos ya reservados no cambian.</p>
 
@@ -134,6 +170,7 @@
         </form>
     </dialog>
     <script src="./js/menu.js"></script>
-    <script src="/js/admin.js?v=5"></script>
+    <script src="/js/nav-dropdown.js?v=1"></script>
+    <script src="/js/admin.js?v=7"></script>
 </body>
 </html>

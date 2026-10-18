@@ -2,7 +2,7 @@ module.exports = {
   PORT: Number(process.env.PORT) || 3000,
   HORAS: ['08:00', '09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
   DIAS_ABIERTO: [1, 2, 3, 4, 5, 6],
-  CUPOS: Number(process.env.CUPOS) || 1,
+  CUPOS: 2,
   DIAS_ADELANTE: 30,
   MAX_TURNOS_POR_TELEFONO: 4,
   SERVICIOS_CON_PRECIO: [
