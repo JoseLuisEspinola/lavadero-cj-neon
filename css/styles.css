@@ -1726,6 +1726,7 @@ footer hr {
     .navbar ul {
         position: fixed;
         width: 100%;
+        /* height: calc(100vh - 100px); */
         height: calc(100vh - 100px);
         background: rgb(29, 52, 86, 0.8);
         top: 100px;
@@ -1740,8 +1741,8 @@ footer hr {
 
     .navbar ul li {
         display: block;
-        margin: 30px 0;
-        line-height: 30px;
+        margin: 20px 0;
+        line-height: 20px;
     }
 
     .navbar ul li a {

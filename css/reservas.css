@@ -16,7 +16,9 @@
     font-size: clamp(2rem, 4vw, 3rem);
 }
 
-.turnos-intro { color: var(--color42); }
+.turnos-intro { 
+    color: var(--color42); 
+}
 
 .turnos-form {
     display: grid;
@@ -47,9 +49,17 @@
     border-radius: 6px;
 }
 
-.turnos-form select option { color: var(--color52); background: var(--color10); }
+.turnos-form select option { 
+    color: var(--color52); 
+    background: var(--color10); 
+}
 
-.turno-slots { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+.turno-slots { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px; 
+    margin: 8px 0; 
+}
 
 .turno-slot {
     min-width: 82px;
@@ -67,7 +77,11 @@
     border-color: var(--color50);
 }
 
-.turno-slot:disabled { opacity: .42; text-decoration: line-through; cursor: not-allowed; }
+.turno-slot:disabled { 
+    opacity: .42; 
+    text-decoration: line-through; 
+    cursor: not-allowed; 
+}
 
 .turnos-submit {
     justify-self: start;
@@ -81,10 +95,26 @@
     cursor: pointer;
 }
 
-.turnos-submit:disabled { opacity: .6; cursor: wait; }
-.turnos-status { min-height: 1.5em; margin: 0; color: var(--color24); }
-.contacto-estado { min-height: 1.3em; margin: 4px 0 0; color: var(--color24); }
+.turnos-submit:disabled { 
+    opacity: .6; 
+    cursor: wait; 
+}
+
+.turnos-status { 
+    min-height: 1.5em; 
+    margin: 0; 
+    color: var(--color24); 
+}
+
+.contacto-estado { 
+    min-height: 1.3em; 
+    margin: 4px 0 0; 
+    color: var(--color24); 
+}
 
 @media (max-width: 700px) {
-    .turnos-form { width: min(100%, 540px); padding: 18px; }
+    .turnos-form { 
+        width: min(100%, 540px); 
+        padding: 18px; 
+    }
 }
