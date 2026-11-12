@@ -1,5 +1,5 @@
 document.getElementById("btnCotizar").addEventListener("click", () => {
-  window.location.href = "https://wa.me/541176039395?text=Hola%20Nico,%20quiero%20una%20cotización";
+  window.location.href = "https://wa.me/541176315305?text=Hola%20Nico,%20quiero%20una%20cotización";
 });
 
 document.getElementById("formContacto").addEventListener("submit", (e) => {

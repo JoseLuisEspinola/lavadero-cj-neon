@@ -33,7 +33,7 @@ router.post('/login', limitador(15 * 60 * 1000, 10), ah(async (req, res) => {
       !crypto.timingSafeEqual(Buffer.from(hash), Buffer.from(storedHash))) {
     return res.status(401).json({ error: 'Nombre de kiosco o contraseña incorrectos.' });
   }
-  res.setHeader('Set-Cookie', crearCookie(result.rows[0].id));
+  res.setHeader('Set-Cookie', crearCookie(result.rows[0].id, result.rows[0].salt));
   res.json({ ok: true });
 }));
 

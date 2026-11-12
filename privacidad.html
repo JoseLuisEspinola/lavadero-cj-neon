@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Política de Privacidad de Lavadero CJ: información sobre el tratamiento de datos personales.">
+    <meta name="robots" content="noindex, follow">
+
+    <meta property="og:title" content="Política de Privacidad | Lavadero CJ">
+    <meta property="og:description" content="Cómo Lavadero CJ trata los datos personales enviados desde el sitio web.">
+    <meta property="og:image" content="https://lavadero-cj-neon.vercel.app/img/logo-lavaderocj.png">
+    <meta property="og:url" content="https://lavadero-cj-neon.vercel.app/privacidad">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Política de Privacidad | Lavadero CJ">
+    <meta name="twitter:description" content="Cómo Lavadero CJ trata los datos personales enviados desde el sitio web.">
+    <meta name="twitter:image" content="https://lavadero-cj-neon.vercel.app/img/logo-lavaderocj.png">
+
+    <link rel="canonical" href="https://lavadero-cj-neon.vercel.app/privacidad">
+    <link rel="shortcut icon" type="Image/png" href="./img/logo-lavaderocj.png">
+    <link rel="stylesheet" href="./css/privacidad.css">
+    <link rel="stylesheet" href="./css/nav-dropdown.css?v=1">
+    <title>Política de Privacidad | Lavadero CJ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+        </label>
+
+        <div class="logo">
+            <a href="index.html" class="enlace">
+                <img src="./img/logo-lavaderocj.png" class="logo" alt="Logo Lavadero CJ">
+            </a>
+            <div class="names">
+                <span class="main-name">LAVADERO <b>CJ</b></span>
+                <span class="main-namesito">¡Cuidado que se nota!</span>
+            </div>
+        </div>
+
+        <ul>
+            <li><a href="index.html" class="link-animado">Inicio</a></li>
+            <li><a href="index.html#container-servicios" class="link-animado">Servicios</a></li>
+            <li><a href="index.html#section-precios" class="link-animado">Precios</a></li>
+            <li><a href="index.html#section-nosotros" class="link-animado">Nosotros</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="index.html#section-turnos" class="link-animado">Turnos</a></li>
+            <li><a href="index.html#section-form">Contacto</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle link-animado" type="button" aria-expanded="false" aria-controls="datos-menu">DATOS</button>
+                <ul class="nav-submenu" id="datos-menu">
+                    <li><a href="/admin" class="link-animado">Admin</a></li>
+                    <li><a href="/kiosco.html" class="link-animado">Kioscos</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="nav-redes">
+            <a href="https://api.whatsapp.com/send?phone=+541176315305&amp;text=Hola%2C%20me%20contacto%20desde%20el%20sitio%20web%20lavadero%20CJ...%20¿podrías%20contarme%20sobre%20los%20servicios?"
+                target="_blank" rel="noopener noreferrer" title="Enviar Whatsapp">
+                <img src="./img/sociales/whatsapp-azul.png" alt="Logo Whatsapp">
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" title="Ir a Instagram">
+                <img src="./img/sociales/instagram-azul.png" alt="Logo Instagram">
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("nav");
+            header.classList.toggle("abajo", window.scrollY > 0);
+        }, { passive: true });
+
+        document.querySelectorAll('.link-animado').forEach(link => {
+            link.innerHTML = link.textContent.split('').map(letra => `<span>${letra}</span>`).join('');
+            link.addEventListener('mouseenter', () => {
+                anime.timeline({ loop: false })
+                    .add({
+                        targets: link.querySelectorAll('span'),
+                        translateY: -10,
+                        duration: 400,
+                        easing: 'easeOutElastic(1, .6)',
+                        delay: anime.stagger(40)
+                    })
+                    .add({
+                        targets: link.querySelectorAll('span'),
+                        translateY: 0,
+                        duration: 600,
+                        easing: 'easeOutElastic(1, .6)',
+                        delay: anime.stagger(40)
+                    }, '+=800');
+            });
+        });
+    </script>
+
+    <section class="zona1 container-politicas">
+        <div class="h1-cabecera">
+            <h1>Política de Privacidad</h1>
+        </div>
+
+        <div class="container-uso">
+            <div class="cabecera introduccion">
+                <h2>1. Responsable y alcance</h2>
+            </div>
+            <div class="parrafo p-introduccion">
+                <p>Esta Política explica cómo Lavadero CJ trata los datos personales que se facilitan a través del sitio,
+                    sus formularios y el sistema de reservas. El responsable del tratamiento es el titular de Lavadero
+                    CJ. Domicilio comercial: Uruguay 4000, Manuel Alberti, provincia de Buenos Aires. Para consultas
+                    sobre privacidad o para ejercer tus derechos, escribí a
+                    <a href="mailto:xxxxxx@gmail.com">xxxxxx@gmail.com</a> o llamá al +54 11 7631-5305.
+                </p>
+            </div>
+
+            <div class="cabecera uso">
+                <h2>2. Datos que podemos recopilar</h2>
+                <p>Al reservar un turno podemos solicitar nombre, teléfono, patente, tipo de vehículo, servicio, fecha y
+                    horario. Al enviar una consulta recopilamos nombre, teléfono y el contenido del mensaje. Si incluís
+                    voluntariamente tu correo electrónico o domicilio en el formulario, esos datos se incorporan al
+                    mensaje que recibimos. También puede quedar registrada información operativa del turno, como su
+                    estado y el momento de creación.
+                </p>
+            </div>
+
+            <div class="cabecera propiedad">
+                <h2>3. Para qué usamos los datos</h2>
+                <p>Usamos la información para registrar y administrar turnos, verificar disponibilidad, identificar el
+                    vehículo, responder consultas, comunicarnos sobre el servicio solicitado y mantener los registros
+                    necesarios para la gestión del lavadero. No ofrecemos los datos personales a terceros para que los
+                    usen con fines publicitarios propios.
+                </p>
+            </div>
+
+            <div class="cabecera contacto">
+                <h2>4. Almacenamiento y proveedores</h2>
+                <p>Los turnos y mensajes enviados por los formularios se almacenan en una base de datos provista por
+                    Neon. El sitio y sus funciones se publican mediante Vercel. Estos proveedores pueden tratar
+                    información técnica necesaria para alojar, entregar y proteger el servicio. El sitio también carga
+                    recursos externos y un mapa de Google Maps; al abrir páginas que los incluyen, tu navegador puede
+                    conectarse con esos proveedores y transmitirles datos técnicos, como la dirección IP. Si elegís
+                    contactarnos por WhatsApp o visitar redes sociales, la interacción pasa a regirse además por las
+                    políticas de esas plataformas. El procesamiento por proveedores puede realizarse fuera de Argentina,
+                    según la infraestructura que utilicen.
+                </p>
+            </div>
+
+            <div class="cabecera contacto">
+                <h2>5. Cookies y tecnologías similares</h2>
+                <p>El sitio no configura cookies publicitarias ni de seguimiento para las reservas públicas. Las áreas
+                    de administración y kioscos utilizan cookies técnicas de sesión para autenticar a sus usuarios; no
+                    son necesarias para reservar un turno como cliente. Los servicios externos integrados en algunas
+                    páginas pueden usar sus propias tecnologías, sujetas a las políticas de cada proveedor.
+                </p>
+            </div>
+
+            <div class="cabecera contacto">
+                <h2>6. Conservación y seguridad</h2>
+                <p>Conservamos los datos durante el tiempo necesario para gestionar el turno o responder la consulta y,
+                    cuando corresponda, para atender obligaciones legales o resolver reclamos. El sistema no publica un
+                    plazo automático de eliminación; las solicitudes de supresión se evalúan conforme a la normativa y
+                    a las obligaciones aplicables. Adoptamos medidas razonables para proteger la información, aunque
+                    ningún medio de transmisión o almacenamiento puede garantizar seguridad absoluta.
+                </p>
+            </div>
+
+            <div class="cabecera contacto">
+                <h2>7. Tus derechos</h2>
+                <p>De acuerdo con la Ley 25.326 de Protección de los Datos Personales, podés solicitar acceso a tus
+                    datos y pedir su rectificación, actualización o supresión, cuando corresponda. Para hacerlo,
+                    escribí a <a href="mailto:xxxxxx@gmail.com">xxxxxx@gmail.com</a> e indicá cómo contactarte y
+                    qué solicitud querés realizar; podremos pedir información razonable para verificar tu identidad.
+                    El derecho de acceso puede ejercerse gratuitamente cada seis meses, salvo que se acredite un
+                    interés legítimo; debe responderse dentro de diez días corridos. Los pedidos de rectificación,
+                    actualización o supresión deben atenderse dentro de cinco días hábiles, conforme a la ley.
+                    La Agencia de Acceso a la Información Pública (AAIP), autoridad de control de la Ley 25.326,
+                    recibe denuncias y reclamos por incumplimientos de la normativa de protección de datos personales
+                    (<a href="https://www.argentina.gob.ar/aaip" target="_blank" rel="noopener noreferrer">información
+                    y canales oficiales de la AAIP</a>).
+                </p>
+            </div>
+
+            <div class="cabecera contacto">
+                <h2>8. Cambios y contacto</h2>
+                <p>Podemos actualizar esta Política cuando cambien el sitio, los servicios o la normativa. La versión
+                    vigente se publicará en esta página. Para cualquier consulta sobre privacidad, contactanos por
+                    correo en <a href="mailto:xxxxxx@gmail.com">xxxxxx@gmail.com</a> o por teléfono al
+                    +54 11 7631-5305.
+                </p>
+            </div>
+
+            <p>Última actualización: 11 de noviembre de 2026.</p>
+        </div>
+
+        <a href="#" class="flecha-arriba">
+            <img src="./img/flecha1.png" alt="Flecha Arriba" title="Inicio">
+        </a>
+    </section>
+
+    <footer class="footer-container">
+        <div class="container-box">
+            <div class="box-footer">
+                <h3 class="title-box">Horarios</h3>
+                <p class="dias">Lunes a viernes:</p>
+                <p class="horas">08:00 hs a 18:00 hs</p>
+                <br>
+                <p class="dias">Sábados:</p>
+                <p class="horas">08:00 hs a 14:00 hs</p>
+            </div>
+
+            <div class="box-footer">
+                <h3 class="title-box">Sociales</h3>
+                <div class="sociales">
+                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" title="Ir a Instagram">
+                        <img class="instagram" src="./img/sociales/instagram.png" alt="Instagram"> Instagram
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" title="Ir a Facebook">
+                        <img class="facebook" src="./img/sociales/facebook.png" alt="Facebook"> Facebook
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=+541176315305&amp;text=Hola%2C%20me%20contacto%20desde%20el%20sitio%20web%20lavadero%20CJ...%20¿podrías%20contarme%20sobre%20los%20servicios?"
+                        target="_blank" rel="noopener noreferrer" title="Ir a Whatsapp">
+                        <img class="whatsapp" src="./img/sociales/whatsapp.png" alt="Whatsapp">Whatsapp
+                    </a>
+                </div>
+            </div>
+
+            <div class="box-footer">
+                <h3 class="title-box">Otros datos</h3>
+                <div class="otros-datos">
+                    <a href="mailto:xxxxxx@gmail.com?subject=Consulta&amp;body=Hola%2C%20quisiera%20más%20información%20sobre%20...">
+                        <i class="fa fa-envelope" aria-hidden="true"></i> Email
+                    </a>
+                    <p class="telefono"><i class="fa fa-phone" aria-hidden="true"></i> +54-11-7631-5305</p>
+                    <p class="direccion"><i class="fa-solid fa-location-dot"></i> Uruguay 4000 - Manuel Alberti</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-terminos">
+            <p>
+                <a class="creditos" href="creditos.html">Créditos</a> -
+                <a class="terminos" href="terminos.html">Térm. y condiciones</a> -
+                <a class="terminos" href="privacidad.html">Política de Privacidad</a>
+            </p>
+        </div>
+
+        <hr>
+
+        <div class="copy">
+            <p class="copyright">&copy; <span id="copyright-year"></span>
+                Lavadero CJ - Todos los derechos reservados
+            </p>
+            <script>
+                document.getElementById('copyright-year').textContent = new Date().getFullYear();
+            </script>
+        </div>
+    </footer>
+
+    <script src="./js/nav-dropdown.js?v=1"></script>
+</body>
+
+</html>

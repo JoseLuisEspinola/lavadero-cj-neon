@@ -223,7 +223,8 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ password: password }),
                     }).then(function () {
-                        $('kioscos-estado').textContent = 'Contraseña actualizada. Compartila solo con ese kiosco.';
+                        $('kioscos-estado').textContent =
+                            'Contraseña actualizada. Se cerraron las sesiones activas de ese kiosco; compartí la nueva clave con él.';
                     }).catch(function (error) {
                         $('kioscos-estado').textContent = error.message;
                     });

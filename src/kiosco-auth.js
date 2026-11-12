@@ -34,28 +34,28 @@ function comparar(a, b) {
 async function sesionDesdeRequest(req) {
   const token = leerCookie(req, 'kiosco');
   if (!token) return null;
-  const [idValue, exp, firma] = token.split('.');
+  const [idValue, exp, salt, firma] = token.split('.');
   const id = Number(idValue);
-  if (!Number.isSafeInteger(id) || id < 1 || !exp || !firma ||
+  if (!Number.isSafeInteger(id) || id < 1 || !exp || !salt || !firma ||
       !Number.isSafeInteger(Number(exp)) || Number(exp) < Date.now() ||
-      SECRET.length < 16 || !comparar(firma, firmar(`${id}.${exp}`))) {
+      SECRET.length < 16 || !comparar(firma, firmar(`${id}.${exp}.${salt}`))) {
     req.cookiesInvalidKiosco = true;
     return null;
   }
   const result = await db.query(
-    'SELECT id, nombre FROM kioscos WHERE id = $1 AND activo = TRUE',
+    'SELECT id, nombre, salt FROM kioscos WHERE id = $1 AND activo = TRUE',
     [id]
   );
-  if (!result.rowCount) {
+  if (!result.rowCount || result.rows[0].salt !== salt) {
     req.cookiesInvalidKiosco = true;
     return null;
   }
-  return result.rows[0];
+  return { id: result.rows[0].id, nombre: result.rows[0].nombre };
 }
 
-function crearCookie(id) {
+function crearCookie(id, salt) {
   const exp = String(Date.now() + DURACION);
-  const value = `${id}.${exp}`;
+  const value = `${id}.${exp}.${salt}`;
   const secure = process.env.NODE_ENV === 'production' || process.env.VERCEL ? '; Secure' : '';
   return `kiosco=${value}.${firmar(value)}; HttpOnly; SameSite=Strict; Path=/api; Max-Age=${DURACION / 1000}${secure}`;
 }

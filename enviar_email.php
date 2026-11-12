@@ -1,8 +1,8 @@
 <?php
 // Configuración básica
 // Reemplaza esta dirección de correo con la que quieres recibir los mensajes
-/* $destinatario = "ng9104944@gmail.com"; */ 
-$destinatario = "ng9104944@gmail.com";
+/* $destinatario = "xxxxxx@gmail.com"; */
+$destinatario = "xxxxxx@gmail.com";
 $asunto = "Nuevo mensaje de contacto desde la web de Aires Nico";
 
 // Verificamos que el formulario haya sido enviado por el método POST
